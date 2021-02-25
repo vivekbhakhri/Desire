@@ -1,5 +1,5 @@
 # Desire
-Desire is a e-commerce website to buy and sell products online.
+Desire is a e-commerce website built to let local sellers sell products online and their customers to buy the products by sitting at home.
 
 
 # Steps to setup
