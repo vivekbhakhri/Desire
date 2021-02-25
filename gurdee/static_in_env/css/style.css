@@ -1,0 +1,1873 @@
+.bg-gray {
+  background-color: #fbfbfb;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 57px;
+}
+.section-title .subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #197beb;
+  line-height: 26px;
+  display: block;
+}
+.section-title .title {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.section-title p {
+  font-size: 16px;
+  color: #818181;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.video-tutorial {
+  padding: 110px 0 0 0;
+}
+.video-tutorial .demo-wrapper {
+  margin-bottom: 40px;
+}
+.video-tutorial .demo-wrapper .title {
+  font-size: 30px;
+  line-height: 40px;
+  margin-bottom: 30px;
+  display: block;
+  text-align: center;
+}
+
+.price-plan-wrapper {
+  padding: 0 0 60px 0;
+}
+
+.pricing-table-1 {
+  border: 3px solid #e5e3e3;
+  border-radius: 10px;
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 30px;
+}
+.pricing-table-1:hover {
+  border-color: #197beb;
+}
+.pricing-table-1 .price-header .title {
+  color: #282828;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-1 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #282828;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-1 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-1 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-1 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-1 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 2px solid #197beb;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #282828;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  font-weight: 600;
+}
+.pricing-table-1 .price-footer .order-btn i {
+  font-size: 13px;
+  padding-left: 2px;
+}
+.pricing-table-1 .price-footer .order-btn:hover {
+  background-color: #197beb;
+  color: #fff;
+  border-color: #197beb;
+}
+.pricing-table-1 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-1 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 27px 0;
+}
+.pricing-table-1 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-1 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-2 {
+  border: 3px solid #e5e3e3;
+  border-radius: 10px;
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 30px;
+}
+.pricing-table-2:hover {
+  border-color: #197beb;
+}
+.pricing-table-2 .price-header .title {
+  color: #282828;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-2 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+}
+.pricing-table-2 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #282828;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-2 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-2 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-2 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-2 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 2px solid #197beb;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #282828;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  font-weight: 600;
+}
+.pricing-table-2 .price-footer .order-btn i {
+  font-size: 13px;
+  padding-left: 2px;
+}
+.pricing-table-2 .price-footer .order-btn:hover {
+  background-color: #197beb;
+  color: #fff;
+  border-color: #197beb;
+}
+.pricing-table-2 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-2 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 27px 0;
+}
+.pricing-table-2 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-2 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-3 {
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 30px;
+}
+.pricing-table-3:hover {
+  border-color: #197beb;
+}
+.pricing-table-3 .price-header {
+  position: relative;
+}
+.pricing-table-3 .price-header .pbadge {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  width: 80%;
+  background-color: #197beb;
+  color: #fff;
+  padding: 10px 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.pricing-table-3 .price-header .pbadge:after {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid #0b56ac;
+  border-top: 22px solid transparent;
+  content: '';
+}
+.pricing-table-3 .price-header .pbadge:before {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  border-left: 20px solid #0b56ac;
+  border-right: 20px solid transparent;
+  border-top: 22px solid transparent;
+  content: '';
+}
+.pricing-table-3 .price-header .title {
+  color: #282828;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-3 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+}
+.pricing-table-3 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #197beb;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.pricing-table-3 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-3 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-3 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-3 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #197beb;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-table-3 .price-footer .order-btn:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-transform: skewX(35deg) translateX(-60px);
+          transform: skewX(35deg) translateX(-60px);
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  content: '';
+}
+.pricing-table-3 .price-footer .order-btn:before {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-transform: skewX(35deg) translateX(60px);
+          transform: skewX(35deg) translateX(60px);
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  content: '';
+}
+.pricing-table-3 .price-footer .order-btn:hover:after {
+  -webkit-transform: skewX(35deg) translateX(190px);
+          transform: skewX(35deg) translateX(190px);
+}
+.pricing-table-3 .price-footer .order-btn:hover:before {
+  -webkit-transform: skewX(35deg) translateX(-190px);
+          transform: skewX(35deg) translateX(-190px);
+}
+.pricing-table-3 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-3 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 27px 0;
+}
+.pricing-table-3 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-3 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-4 {
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  z-index: 0;
+  margin-bottom: 30px;
+}
+.pricing-table-4:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #197beb;
+  content: '';
+  -webkit-transition: height .5s ease-in;
+  transition: height .5s ease-in;
+  z-index: -1;
+}
+.pricing-table-4:hover:after {
+  height: 100%;
+}
+.pricing-table-4:hover .price-header .icon {
+  color: #fff;
+}
+.pricing-table-4:hover .price-header .price {
+  color: #fff;
+}
+.pricing-table-4:hover .price-body ul li {
+  color: #e5e3e3;
+}
+.pricing-table-4:hover .price-footer .order-btn {
+  background-color: #fff;
+  color: #282828;
+}
+.pricing-table-4 .price-header .title {
+  color: #282828;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-4 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-4 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #197beb;
+  font-weight: 700;
+  margin-bottom: 25px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-4 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-4 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-4 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-4 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #197beb;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-table-4 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-4 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 27px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-4 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-4 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-5 {
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  z-index: 0;
+  margin-bottom: 30px;
+}
+.pricing-table-5:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #197beb;
+  content: '';
+  -webkit-transition: height .5s ease-in;
+  transition: height .5s ease-in;
+  z-index: -1;
+}
+.pricing-table-5 .price-header .title {
+  color: #282828;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+.pricing-table-5 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-5 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #197beb;
+  font-weight: 700;
+  margin-bottom: 25px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-5 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-5 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-5 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-5 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #197beb;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-table-5 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-5 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 27px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-5 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-5 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-6 {
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  background-color: #4d6de6;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.pricing-table-6.bg-orange {
+  background-color: #f06031;
+}
+.pricing-table-6 .price-header .title {
+  color: #fff;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 35px;
+}
+.pricing-table-6 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-6 .price-header .price {
+  font-size: 62px;
+  line-height: 60px;
+  color: #282828;
+  font-weight: 800;
+  margin-bottom: 25px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  text-align: left;
+  padding-left: 40px;
+  position: relative;
+  padding: 20px 0 20px 60px;
+  z-index: 0;
+}
+.pricing-table-6 .price-header .price:after {
+  position: absolute;
+  left: -20%;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 25px;
+  content: '';
+  height: 100%;
+  -webkit-transform: skewX(-35deg);
+          transform: skewX(-35deg);
+  z-index: -1;
+}
+.pricing-table-6 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-6 .price-header .price .month {
+  font-size: 22px;
+  line-height: 23px;
+}
+.pricing-table-6 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-6 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #282828;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-table-6 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #333;
+  color: #fff;
+}
+.pricing-table-6 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-6 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #e5e5e5;
+  margin: 27px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-6 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-6 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-7 {
+  text-align: center;
+  padding: 38px 0 40px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid #e5e5e5;
+  margin-bottom: 30px;
+}
+.pricing-table-7 .price-header .title {
+  color: #282828;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+.pricing-table-7 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+  color: #197beb;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-7 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #fff;
+  font-weight: 400;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+  background-color: #197beb;
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.pricing-table-7 .price-header .price .top {
+  padding-top: 40px;
+  height: 60px;
+}
+.pricing-table-7 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-7 .price-header .price .month {
+  margin-top: 60px;
+  font-size: 16px;
+  line-height: 20px;
+  display: block;
+  background-color: #282828;
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+}
+.pricing-table-7.yellow .price-header .price {
+  background-color: #ff9f00;
+}
+.pricing-table-7.yellow .price-footer .order-btn {
+  background-color: #ff9f00;
+}
+.pricing-table-7.green .price-header .price {
+  background-color: #6a9e39;
+}
+.pricing-table-7.green .price-footer .order-btn {
+  background-color: #6a9e39;
+}
+.pricing-table-7.red-pink .price-header .price {
+  background-color: #c3185c;
+}
+.pricing-table-7.red-pink .price-footer .order-btn {
+  background-color: #c3185c;
+}
+.pricing-table-7 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-7 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-table-7 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #333;
+  color: #fff;
+}
+.pricing-table-7 .price-body ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+}
+.pricing-table-7 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 27px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-7 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-7 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-8 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-8 .price-header .title {
+  color: #fff;
+  line-height: 46px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  background-color: #100f15;
+}
+.pricing-table-8 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #fe4a55;
+  font-weight: 700;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+  border-bottom: 2px solid #c5d4db;
+  padding-bottom: 25px;
+  margin: 0 20px;
+}
+.pricing-table-8 .price-header .price .dollar {
+  font-size: 18px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-8 .price-header .price .month {
+  font-size: 16px;
+  line-height: 20px;
+}
+.pricing-table-8 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-8 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #fe4a55;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.pricing-table-8 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #333;
+  color: #fff;
+}
+.pricing-table-8.active .price-header {
+  position: relative;
+}
+.pricing-table-8.active .price-header .popular {
+  position: absolute;
+  top: 15px;
+  right: -55px;
+  display: inline-block;
+  background-color: #202a4d;
+  padding: 10px 30px;
+  width: 180px;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.pricing-table-8.active .price-header .title {
+  background-color: #fe4a55;
+}
+.pricing-table-8 .price-body ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+}
+.pricing-table-8 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 27px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-8 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-8 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-9 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-9.active .price-header {
+  position: relative;
+}
+.pricing-table-9 .icon-area {
+  background-color: #202a4d;
+  color: #fff;
+  font-size: 60px;
+  line-height: 60px;
+  padding: 30px 0;
+  margin-bottom: 45px;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-9 .icon-area:after {
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #202a4d;
+  content: '';
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-9 .price-header .title {
+  color: #282828;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.pricing-table-9 .price-header .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #ed570b;
+  font-weight: 700;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  text-align: center;
+  position: relative;
+}
+.pricing-table-9 .price-header .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-9 .price-header .price .month {
+  font-size: 16px;
+  line-height: 20px;
+}
+.pricing-table-9 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-9 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #ed570b;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.pricing-table-9 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #333;
+  color: #fff;
+}
+.pricing-table-9:hover .icon-area {
+  background-color: #ed570b;
+}
+.pricing-table-9:hover .icon-area:after {
+  border-top-color: #ed570b;
+}
+.pricing-table-9 .price-body ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+}
+.pricing-table-9 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-9 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-9 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-10 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-10:hover .icon-area {
+  background-color: #ed570b;
+  color: #fff;
+}
+.pricing-table-10:hover .icon-area .title {
+  color: #fff;
+}
+.pricing-table-10:hover .price-footer {
+  background-color: #ed570b;
+}
+.pricing-table-10:hover .price-footer .price {
+  color: #fff;
+}
+.pricing-table-10:hover .price-footer .dollar {
+  color: #fff;
+}
+.pricing-table-10:hover .price-footer .month {
+  color: #fff;
+}
+.pricing-table-10:hover .price-footer .order-btn {
+  background-color: #fff;
+  color: #282828;
+}
+.pricing-table-10 .icon-area {
+  background-color: #efefef;
+  color: #ed570b;
+  font-size: 60px;
+  line-height: 60px;
+  padding: 30px 0 20px;
+  margin-bottom: 35px;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-10 .icon-area .title {
+  color: #282828;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-10 .price-footer {
+  margin-top: 40px;
+  background-color: #efefef;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-10 .price-footer .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #ed570b;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  padding: 25px 0;
+}
+.pricing-table-10 .price-footer .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-10 .price-footer .price .month {
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-10 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  background-color: #ed570b;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.pricing-table-10 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #333;
+  color: #fff;
+}
+.pricing-table-10.active .price-header {
+  position: relative;
+}
+.pricing-table-10 .price-body ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+}
+.pricing-table-10 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-10 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-10 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-11 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #e5e3e3;
+  margin-bottom: 30px;
+}
+.pricing-table-11 .price-header {
+  position: relative;
+  padding: 10px 0 25px;
+}
+.pricing-table-11 .price-header .subtitle {
+  font-size: 14px;
+}
+.pricing-table-11 .price-header .title {
+  color: #282828;
+  font-size: 18px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 5px;
+}
+.pricing-table-11.active .price-header {
+  position: relative;
+}
+.pricing-table-11.active .popular {
+  position: absolute;
+  right: -20px;
+  top: 25px;
+  background-color: #197beb;
+  padding: 5px 25px;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.pricing-table-11.active .popular:after {
+  position: absolute;
+  right: -8px;
+  bottom: 5px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #fff;
+  content: '';
+  -webkit-transform: rotate(88deg);
+          transform: rotate(88deg);
+}
+.pricing-table-11 .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #282828;
+  font-weight: 400;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  padding: 25px 0 10px;
+  border-top: 2px solid #e5e3e3;
+  margin: 0 20px;
+}
+.pricing-table-11 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-11 .price .month {
+  font-size: 20px;
+  line-height: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  font-weight: 400;
+}
+.pricing-table-11 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-11 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #282828;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border: 2px solid #197beb;
+}
+.pricing-table-11 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #197beb;
+  color: #fff;
+}
+.pricing-table-11 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-11 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-11 .price-body ul li:first-child {
+  margin-top: 0;
+}
+.pricing-table-11 .price-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.pricing-table-12 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-12 .price-header {
+  padding: 20px 0 35px;
+  background-color: #31455b;
+  margin-bottom: 30px;
+  background-image: url("data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QOJaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0MiA3OS4xNjA5MjQsIDIwMTcvMDcvMTMtMDE6MDY6MzkgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MUZGMTQwOTBDNjk0RTQxMTg4RkU4RDBEMTgxRkEzRTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTQ4RDE4QzdEODgzMTFFODlERjBGMzA0NEY4QkM0NjkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTQ4RDE4QzZEODgzMTFFODlERjBGMzA0NEY4QkM0NjkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Zjg3N2RlZWUtNjY3NC05MjQ4LTlkZjAtMjAwZDVlZWYzYjAyIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OGRhOTlmMmYtYzE5Yi0zYTRiLTkwZWYtNzJjM2NmNTkyYmFhIi8+IDwvcmRmOkRl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");
+  position: relative;
+  z-index: 0;
+}
+.pricing-table-12 .price-header:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(25, 123, 235, 0.2);
+  content: '';
+  z-index: -1;
+}
+.pricing-table-12 .price-header .subtitle {
+  font-size: 14px;
+  color: #e5e3e3;
+}
+.pricing-table-12 .price-header .title {
+  color: #fff;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 5px;
+}
+.pricing-table-12 .icon-area {
+  font-size: 60px;
+  line-height: 60px;
+  color: #197beb;
+  margin-bottom: 10px;
+  display: block;
+}
+.pricing-table-12 .price {
+  font-size: 50px;
+  line-height: 60px;
+  color: #282828;
+  font-weight: 800;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  padding: 15px 0 10px;
+  margin: 0 20px;
+}
+.pricing-table-12 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-12 .price .month {
+  font-size: 20px;
+  line-height: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  font-weight: 800;
+}
+.pricing-table-12 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-12 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #282828;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border: 2px solid #197beb;
+}
+.pricing-table-12 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.35);
+  background-color: #197beb;
+  color: #fff;
+}
+.pricing-table-12 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-12 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-12 .price-body ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pricing-table-12 .price-body ul li:first-child {
+  margin-top: 0;
+}
+
+.pricing-table-13 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-13 .price-header {
+  padding: 30px 0 65px;
+  background-color: #efefef;
+  position: relative;
+  z-index: 0;
+}
+.pricing-table-13 .price-header .title {
+  color: #282828;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 5px;
+}
+.pricing-table-13 .price-header .icon {
+  font-size: 60px;
+  line-height: 60px;
+  color: #ed570b;
+  display: block;
+}
+.pricing-table-13 .price {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  background-color: #ed570b;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  line-height: 90px;
+  left: 50%;
+  margin-top: -45px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin-bottom: 15px;
+}
+.pricing-table-13 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-13 .price .month {
+  font-size: 20px;
+  line-height: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  font-weight: 800;
+}
+.pricing-table-13 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-13 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #ed570b;
+}
+.pricing-table-13 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(237, 87, 11, 0.7);
+}
+.pricing-table-13 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-13 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-13 .price-body ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pricing-table-13 .price-body ul li:first-child {
+  margin-top: 0;
+}
+
+.pricing-table-14 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  margin-bottom: 30px;
+}
+.pricing-table-14 .price-header {
+  position: relative;
+  padding: 30px 0 25px;
+  background-color: #efefef;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-14 .price-header .permonth {
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  background-color: #fff;
+  padding: 10px 35px;
+  border-radius: 25px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  color: #383838;
+}
+.pricing-table-14 .price-header .title {
+  color: #282828;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 15px;
+}
+.pricing-table-14:hover .price-header {
+  background-color: #3367d6;
+}
+.pricing-table-14:hover .price-header .title {
+  color: #fff;
+}
+.pricing-table-14:hover .price {
+  color: #fff;
+}
+.pricing-table-14 .price {
+  font-size: 50px;
+  color: #282828;
+  font-weight: 800;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 15px;
+}
+.pricing-table-14 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-14 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-14 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #3367d6;
+}
+.pricing-table-14 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(51, 103, 214, 0.7);
+}
+.pricing-table-14 .price-body ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 40px;
+}
+.pricing-table-14 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-14 .price-body ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pricing-table-14 .price-body ul li:first-child {
+  margin-top: 0;
+}
+
+.pricing-table-15 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  margin-bottom: 30px;
+}
+.pricing-table-15:hover {
+  border-color: #3367d6;
+}
+.pricing-table-15 .price-header {
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-15 .price-header .icon {
+  background-color: #3367d6;
+  color: #fff;
+  width: 50%;
+  margin: 0 auto;
+  height: 80px;
+  font-size: 50px;
+  line-height: 80px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.pricing-table-15 .price-header .title {
+  color: #282828;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 5px;
+}
+.pricing-table-15 .price-header .subtitle {
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+}
+.pricing-table-15 .price {
+  font-size: 50px;
+  color: #282828;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-15 .price .month {
+  font-size: 16px;
+  font-weight: 600;
+}
+.pricing-table-15 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-15 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-15 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #3367d6;
+}
+.pricing-table-15 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(51, 103, 214, 0.7);
+}
+.pricing-table-15 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-15 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #282828;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  border-bottom: 1px solid #e7eefe;
+}
+.pricing-table-15 .price-body ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pricing-table-15 .price-body ul li:first-child {
+  margin-top: 0;
+}
+
+.pricing-table-16 {
+  text-align: center;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 0 7px 0 rgba(77, 109, 230, 0.35);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  margin-bottom: 30px;
+}
+.pricing-table-16:hover {
+  border-color: #3367d6;
+}
+.pricing-table-16 .price-header {
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-16 .price-header .title {
+  color: #282828;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 20px;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  margin-bottom: 5px;
+  padding: 10px 0 0;
+}
+.pricing-table-16 .price-header .subtitle {
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+}
+.pricing-table-16 .price {
+  font-size: 50px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+  height: 130px;
+  width: 150px;
+  background-color: #3367d6;
+  margin: 30px auto 15px auto;
+  line-height: 130px;
+  border-radius: 10px;
+  z-index: 0;
+}
+.pricing-table-16 .price .month {
+  font-size: 16px;
+  font-weight: 600;
+}
+.pricing-table-16 .price .dollar {
+  font-size: 33px;
+  line-height: 33px;
+  position: relative;
+  top: -12px;
+}
+.pricing-table-16 .price-footer {
+  margin-top: 40px;
+}
+.pricing-table-16 .price-footer .order-btn {
+  display: inline-block;
+  width: 165px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: #fff;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #3367d6;
+}
+.pricing-table-16 .price-footer .order-btn:hover {
+  box-shadow: 0 0 21px 0 rgba(51, 103, 214, 0.7);
+}
+.pricing-table-16 .price-body ul {
+  margin: 0;
+  padding: 0;
+}
+.pricing-table-16 .price-body ul li {
+  list-style: none;
+  display: block;
+  color: #8997a7;
+  margin: 0 30px;
+  padding: 15px 0;
+  -webkit-transition: .3s ease-in;
+  transition: .3s ease-in;
+}
+.pricing-table-16 .price-body ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pricing-table-16 .price-body ul li:first-child {
+  margin-top: 0;
+}

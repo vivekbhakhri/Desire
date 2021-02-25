@@ -1,0 +1,111 @@
+body {
+  background-color: #1d1e22;
+  font-family: 'Titillium Web', sans-serif;  
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+  background-color: #fff;
+  padding: 40px 0 40px 0;
+  margin-top: 25px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.movie-picture {
+  position: relative;
+  bottom: -30px;
+  left: -40px;
+  width: 130%;
+
+  margin-
+  overflow: hidden;
+}
+
+.countdown {
+  width: 100%;
+  text-align: center;
+}
+
+.countdown .movie-name-picture {
+  width: 40%;
+  margin-bottom: 30px;
+}
+
+.countdown .movie-date {
+  text-transform: uppercase;
+  color: #bbb;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.countdown ul {
+  padding-left: 0;
+}
+
+.countdown li {
+  text-align: center;
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #1d1e22;
+  list-style-type: none;
+  padding: 4px;
+  padding-top: 0;
+  text-transform: uppercase;
+}
+
+.countdown li span {
+  display: block;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+.website-button {
+  background-color: #5aa2b8;
+  padding: 15px 50px;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.25);
+  transition: all 0.3s;
+}
+
+.website-button:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: #215671;
+}
+
+.social-medias {
+  position: absolute;
+  bottom: -20px;
+  right: 40px;
+  font-size: 1.2rem;
+}
+
+.social-medias a {
+  color: #aaa;
+  padding: 5px;
+  transition: all 0.3s;
+}
+
+.social-medias a:hover {
+  color: #5aa2b8;
+  font-size: 1.5rem;
+}

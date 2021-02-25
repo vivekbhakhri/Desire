@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Open+Sans");
+body {
+  padding: 0;
+  margin: 0;
+}
+
+section.row.testimonials {
+  background-color: #fe4a55;
+  padding: 20px;
+  box-sizing: border-box;
+}
+section.row.testimonials .owl-carousel {
+  width: 100%;
+  cursor: move;
+}
+section.row.testimonials .owl-carousel .item {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  -webkit-transition: .3s all linear;
+  transition: .3s all linear;
+}
+section.row.testimonials .owl-carousel .item:hover {
+  background-color: #f8323e;
+}
+section.row.testimonials .owl-carousel .item:hover h3, section.row.testimonials .owl-carousel .item:hover p {
+  color: #ffffff;
+}
+section.row.testimonials .owl-carousel .item:hover img {
+  border: 3px solid white;
+  box-sizing: border-box;
+}
+section.row.testimonials .owl-carousel .item h3 {
+  color: #6b4476;
+}
+section.row.testimonials .owl-carousel .item p {
+  color: #777777;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  font-size: 13 px;
+}
+section.row.testimonials .owl-carousel .item img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  -webkit-transition: .3s border linear;
+  transition: .3s border linear;
+}
+section.row.testimonials h2 {
+  color: #ffffff;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 33px;
+  letter-spacing: 0.1em;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  margin-bottom: 40px;
+}
+section.row.testimonials .owl-dots {
+  margin: 20px auto 0;
+  /*for centering the dots*/
+  text-align: center;
+}
+section.row.testimonials .owl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #885796;
+  margin-right: 5px;
+  display: inline-block;
+}
+section.row.testimonials .owl-dot.active {
+  background: #ffffff;
+}
+section.row.testimonials .owl-dots.disabled {
+  display: block !important;
+}

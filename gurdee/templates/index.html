@@ -1,0 +1,851 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire || Home </title>
+  {% for seo in seos %}
+  <meta name="description" content="{{seo.description}}">
+  {% endfor %}
+ {% include 'sty.html' %} 
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                  {% if request.user|has_group:"Service Providers" %} 
+                     <ul class="menu flex">
+                        <li><a href={% url "shop:profile" %}>Profile</a></li>
+                        <li class="login-dropdown"><a href="#">Products</a>
+                            <ul class="sub-login">
+                                <li><a href={% url "shop:addproduct" %}>Add Product</a></li>
+                        <li><a href={% url "shop:serviceproduct" %}>My Products</a></li>
+                            </ul>
+                        </li>
+                        <li><a href={% url "shop:subscription" %}>Subscription</a></li>
+                        <li><a href={% url "shop:logout" %}>Logout</a></li>
+                     </ul>
+                  {% else %}
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:index"%}>Home</a></li>
+                        <li><a href={% url "shop:testimonials"%}>Contact Us</a></li>
+                         {% if user.is_authenticated %}
+                        <li class="category-dropdown"><a href="#">Categories</a>
+                            <ul class="sub-category">
+                              {% for item in category %}
+                                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% else %}
+                         <li class="category-dropdown"><a href="#" onclick="handleLogin()">Categories</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                          <!-- <li><a href="#">Welcome! {{user.first_name}}</a></li> -->
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                          <li><a href="{% url "shop:cart" %}" style="position: relative;
+                          padding: 10px 10px;" >Cart<span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                        {% else %}
+                        <div style="display: inline-flex;">
+                          <li class="login-dropdown"><a href="#">Login</a>
+                              <ul class="sub-login">
+                                  <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:service_login_page' %}">Seller</a></li>
+                              </ul>
+                          </li>
+                          <li class="register-dropdown"><a href="{% url 'shop:registration' %}">Register</a>
+                                                        </li>
+                        </div>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button style="font-size: 25px;" class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+
+        <div class="slider">
+  <input name="control" id="page1" type="radio" checked/>
+  <input name="control" id="page2" type="radio"/>
+  <input name="control" id="page3" type="radio"/>
+  <input name="control" id="page4" type="radio"/>
+  <div class="slider--el slider--el-1 anim-4parts">
+    <div class="slider--el-bg">
+      <div class="part top left"></div>
+      <div class="part top right"></div>
+      <div class="part bot left"></div>
+      <div class="part bot right"></div>
+    </div>
+    <div class="slider--el-content">
+      <h2 style="font-size: 90px;" class="slider--el-heading">WOMEN'S SHOPPING</h2>
+      <input class="inp" type="button" name="btn" value="Buy Now">
+    </div>
+  </div>
+  <div class="slider--el slider--el-2 anim-9parts">
+    <div class="slider--el-bg">
+      <div class="part left-top"></div>
+      <div class="part mid-top"></div>
+      <div class="part right-top"></div>
+      <div class="part left-mid"></div>
+      <div class="part mid-mid"></div>
+      <div class="part right-mid"></div>
+      <div class="part left-bot"></div>
+      <div class="part mid-bot"></div>
+      <div class="part right-bot"></div>
+    </div>
+    <div class="slider--el-content">
+      <h2 style="font-size: 90px;" class="slider--el-heading">MEN'S SHOPPING</h2>
+      <input class="inp" type="button" name="btn" value="Buy Now">
+    </div>
+  </div>
+  <div class="slider--el slider--el-3 anim-5parts">
+    <div class="slider--el-bg">
+      <div class="part part-1"></div>
+      <div class="part part-2"></div>
+      <div class="part part-3"></div>
+      <div class="part part-4"></div>
+      <div class="part part-5"></div>
+    </div>
+    <div class="slider--el-content">
+      <h2 style="font-size: 90px;" class="slider--el-heading">MEN'S SHOES</h2>
+      <input class="inp" type="button" name="btn" value="Buy Now">
+    </div>
+  </div>
+  <div class="slider--el slider--el-4 anim-3parts">
+    <div class="slider--el-bg">
+      <div class="part left"></div>
+      <div class="part mid"></div>
+      <div class="part right"></div>
+    </div>
+    <div class="slider--el-content">
+      <h2 style="font-size: 90px;" class="slider--el-heading">WOMEN'S WEAR</h2>
+      <input class="inp" type="button" name="btn" value="Buy Now">
+    </div>
+  </div>
+  <div class="slider--control left">
+    <label class="page1-left" for="page1"><i class="fa fa-greater-than"></i></label>
+    <label class="page2-left" for="page2"></label>
+    <label class="page3-left" for="page3"></label>
+    <label class="page4-left" for="page4"></label>
+  </div>
+  <div class="slider--control right">
+    <label class="page1-right" for="page1"></label>
+    <label class="page2-right" for="page2"></label>
+    <label class="page3-right" for="page3"></label>
+    <label class="page4-right" for="page4"></label>
+  </div>
+</div>
+<section><h1></h1></section>
+<section class="feature-area section_gap_bottom_custom">
+<div class="container">
+<div class="row">
+<div class="col-lg-3 col-md-6">
+<div class="single-feature">
+<a href="#" class="title">
+<i class="flaticon-money"></i>
+<h3>Money back gurantee</h3>
+</a>
+<p>Shall open divide a one</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-feature">
+<a href="#" class="title">
+<i class="flaticon-truck"></i>
+<h3>Free Delivery</h3>
+</a>
+<p>Shall open divide a one</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-feature">
+<a href="#" class="title">
+<i class="flaticon-support"></i>
+<h3>Alway support</h3>
+</a>
+<p>Shall open divide a one</p>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-feature">
+<a href="#" class="title">
+<i class="flaticon-blockchain"></i>
+<h3>Secure payment</h3>
+</a>
+<p>Shall open divide a one</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+    <div class="new-menu-box" style="width: 100%;">
+      {% if request.user|has_group:"Service Providers" %}
+        <ul class="new-menu" style="margin-left: 20px;">
+
+                     
+                        <li><a href={% url "shop:profile" %}>Profile</a></li>
+                        <li class="new-login-dropdown"><a href="#">Products<span class="fa fa-angle-down l-u-aero"></span>
+                        <ul class="new-sub-login">
+                           
+                                <li><a href={% url "shop:addproduct" %}>Add Product</a></li>
+                        <li><a href={% url "shop:serviceproduct" %}>My Products</a></li>
+                            </ul>
+                        </li>
+                        <li><a href={% url "shop:subscription" %}>Subscription</a></li>
+                        <li><a href={% url "shop:logout" %}>Logout</a></li>
+                     </ul>
+                  {% else %}
+                  <ul class="new-menu" style="margin-left: 20px;">
+                        <!-- <li><a href={% url "shop:index"%}>Home</a></li> -->
+                         {% if user.is_authenticated %}
+                       <li class="new-category-dropdown"><a href="#">Categories<span class="fa fa-angle-down c-u-aero"></span>
+                        <span class="fa fa-angle-up c-d-aero"></span></a></a></li>
+            <ul class="new-sub-category">
+                           
+                              {% for item in category %}
+                                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+ 
+                        {% else %}
+                        <li class="new-category-dropdown"><a href="#" >Categories<span class="fa fa-angle-down c-u-aero"></span>
+                        <span class="fa fa-angle-up c-d-aero"></span></a></a></li>
+            <ul class="new-sub-category">
+              <li><p style="color: white;"> Login To View the Categories.</p></li>
+            </ul>
+                         {% endif %}
+                        {% if user.is_authenticated %}
+                          <!-- <li><a href="#">Welcome! {{user.first_name}}</a></li> -->
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                         <li class="new-login-dropdown"><a href="#">Login<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                                  <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:service_login_page' %}">Seller</a></li>
+                              </ul>
+                          </li>
+                          <li class="new-register-dropdown"><a href="#">Register<span class="fa fa-angle-down r-u-aero"></span>
+                    <span class="fa fa-angle-up r-d-aero"></span></a></li>
+            <ul class="new-sub-register">
+                                  <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                              </ul>
+                         
+                    
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+
+           
+        <span class="fa fa-times close" style="color: white;opacity: 1;font-size: 2rem;"></span>
+    </div>
+<!-- <section style="height: 120px;width: 100%;background-color: black;display: flex;justify-content: center;text-align: center;align-items: center;border-bottom: 10px solid #fe4a55;">
+  <h4 style="text-align: center;color: white;margin-top: 20px;">Seasonal / Festival Discount</h4>
+</section> -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+
+
+<div style="display: none;">
+{% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="display: inherit;">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+</div>
+<section style="height: 800px;width: 100%;background-image:url({% static 'img/banner/banner-bg.jpg' %});background-attachment: fixed;background-position: center; background-repeat: no-repeat; background-size: cover;float: left;border-bottom: 15px solid #71cd14;">
+  <div class="container row">
+<div class="blockquote-wrapper col-lg-6 col-sm-12">
+  <div class="blockquote">
+    <div class="banner_content row">
+<div class="col-lg-12">
+<p class="sub text-uppercase" style="color: white;#71cd14">men Collection</p>
+<h3 style="color: white;font-size: 40px;"><span style="color: #71cd14;">Show</span> Your <br />Personal <span style="color: #71cd14;">Style</span></h3>
+<h4 style="color: white;">Fowl saw dry which a above together place.</h4>
+<a class="main_btn mt-40" href="#">View Collection</a>
+</div>
+</div>
+  </div>
+</div>
+</div>   
+</section>
+{% for banner in homeImage %}
+<div id="banner">
+            <a href="/">
+                <img src="{{banner.image.url}}" class="image">
+                <!-- <div id="target"></div>
+                <img id="product" src="logo.png"> -->
+                <div class="badge">{{banner.badge_title}}</div>
+                <div class="sale">
+                    <span class="sale-text">{{banner.main_title}}</span><br/>
+                </div>
+            </a>
+        </div>
+{% endfor %}
+
+<div class="swiper-container main-slider loading">
+  
+  <div class="swiper-wrapper">
+   <!--  <a href="product.html"> -->
+  {% for item in category %}
+    <div class="swiper-slide">
+      <a href={% url "shop:product" item.slug item.id %}>
+      <figure class="slide-bgimg" style="background-image:url({{item.image.url}})">
+        <img src="{{item.image.url}}" class="entity-img" />
+      </figure>
+
+      <div class="content">
+        <p class="title">{{item.title}}</p>
+        <span class="caption">{{item.description}}</span>
+      </div>
+    </a>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev swiper-button-white"></div>
+  <div class="swiper-button-next swiper-button-white"></div>
+</div>
+
+<!-- Thumbnail navigation -->
+<div class="swiper-container nav-slider loading">
+  <div class="swiper-wrapper" role="navigation">
+    {% for item in category %}
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url({{item.image.url}})">
+        <img src="{{item.image.url}}" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">{{item.title}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<section><p></p></section>
+<section class="feature_product_area section_gap_bottom_custom">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-12">
+<div class="main_title">
+	<section style="background-color: white;margin-bottom: 50px;margin-top: 50px;" id="contact"></section>
+<h2><span>Featured product</span></h2>
+<p>Bring called seed first of third give itself now ment</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/feature-product/f-p-1.jpg' %}" alt="" />
+
+<div class="p_icon">
+<a href="/productpage/women%20sneakers/6">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+	<i class="ti-heart"></i>
+</a>
+<a href="/productpage/women%20sneakers/6">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/women%20sneakers/6" class="d-block">
+<h4>Women’s sneaker</h4>
+
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.1000.00</span>
+<del>RS.1500.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/feature-product/f-p-2.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/womens%20handbag/8" class="d-block">
+<h4>Women's Handbag </h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.800.00</span>
+<del>RS.700.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/feature-product/f-p-3.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/mens%20smart%20watch/4" class="d-block">
+<h4>Men stylist Smart Watch</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.900.00</span>
+<del>RS.1000.00</del>
+</div>
+</div>
+</div>
+</div>
+ </div>
+</div>
+</section>
+
+<section class="offer_area">
+<div class="container">
+<div class="row justify-content-center">
+<div class="offset-lg-4 col-lg-6 text-center">
+<div class="offer_content">
+<h3 class="text-uppercase mb-40">all men’s collection</h3>
+<h2 class="text-uppercase">50% off</h2>
+<a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
+<p>Limited Time Offer</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+<section class="new_product_area section_gap_top section_gap_bottom_custom">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-12">
+<div class="main_title">
+<h2><span>new products</span></h2>
+<p>Bring called seed first of third give itself now ment</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6">
+<div class="new_product">
+<h5 class="text-uppercase">collection of 2019</h5>
+<h3 class="text-uppercase">Men’s summer t-shirt</h3>
+<div class="product-img">
+<img class="img-fluid" src="{% static 'img/product/new-product/new-product1.png' %}" alt="" />
+</div>
+<h4>RS.120.70</h4>
+<a href="#" class="main_btn">Add to cart</a>
+</div>
+</div>
+<div class="col-lg-6 mt-5 mt-lg-0">
+<div class="row">
+<div class="col-lg-6 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/new-product/n1.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/canvas%20shoes/1" class="d-block">
+<h4>Canvas Shoes</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.100.00</span>
+<del>RS.200.00</del>
+ </div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/new-product/n2.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/mens%20smart%20watch/4" class="d-block">
+<h4>Men’s Watch</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.900.00</span>
+<del>RS.1000.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/new-product/n3.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/men_jeans/3">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/men_jeans/3">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/men_jeans/3" class="d-block">
+<h4>Mens Jeans</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.4500.00</span>
+<del>RS.5000.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/new-product/n4.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-shopping-cart"></i>
+ </a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/canvas%20shoes/1" class="d-block">
+<h4>Canvas Shoes</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.100.00</span>
+<del>RS.200.00</del>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="inspired_product_area section_gap_bottom_custom">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-12">
+<div class="main_title">
+<h2><span>Inspired products</span></h2>
+<p>Bring called seed first of third give itself now ment</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i1.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/womens%20handbag/8" class="d-block">
+<h4>Women's Handbag</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.25.00</span>
+<del>RS.35.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i2.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/men_jeans/3">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/men_jeans/3">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/men_jeans/3" class="d-block">
+<h4>Men's Jeans</h4>
+ </a>
+<div class="mt-3">
+<span class="mr-4">RS.4500.00</span>
+<del>RS.5000.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i3.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/mens%20smart%20watch/4" class="d-block">
+<h4>Men's watch</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.900.00</span>
+<del>RS.1000.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i4.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/women%20sneakers/6">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/women%20sneakers/6">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/women%20sneakers/6" class="d-block">
+<h4>Women’s sneaker</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.1000.00</span>
+<del>RS.1500.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i5.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/mens%20smart%20watch/4">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/mens%20smart%20watch/4" class="d-block">
+<h4>Men's Watch</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.900.00</span>
+<del>RS.1000.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i6.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/canvas%20shoes/1" class="d-block">
+<h4>Canvas Shoes</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.100.00</span>
+<del>RS.200.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i7.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/womens%20handbag/8">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+</div>
+<div class="product-btm">
+<a href="/productpage/womens%20handbag/8" class="d-block">
+<h4>Women's Handbag</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.700.00</span>
+<del>RS.800.00</del>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="single-product">
+<div class="product-img">
+<img class="img-fluid w-100" src="{% static 'img/product/inspired-product/i8.jpg' %}" alt="" />
+<div class="p_icon">
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-eye"></i>
+</a>
+<a href="#">
+<i class="ti-heart"></i>
+</a>
+<a href="/productpage/canvas%20shoes/1">
+<i class="ti-shopping-cart"></i>
+</a>
+</div>
+ </div>
+<div class="product-btm">
+<a href="/productpage/canvas%20shoes/1" class="d-block">
+<h4>Canvas Shoes</h4>
+</a>
+<div class="mt-3">
+<span class="mr-4">RS.100.00</span>
+<del>RS.200.00</del>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% include 'footer.html' %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js'></script>
+<script  src="{% static 'slide.js' %}"></script>
+<script type="text/javascript">
+  function handleLogin() {
+    alert("Login To View Products");
+  }
+</script>
+</body>
+</html>

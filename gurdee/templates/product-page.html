@@ -1,0 +1,496 @@
+
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Desire || Single Product</title>
+
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style1.css' %}" />
+
+	
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+   
+   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+ <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+    <style type="text/css">
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .btn.btn-primary.login:hover{
+    background-color: #100f15;
+    color: white;
+  }
+  .a{
+    color: #fe4a55;
+  }
+  .a:hover{
+    color: #100f15;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+ 
+.sub-category::before, .sub-register::before, .sub-login::before{
+    content: "";
+    border: 12px solid var(--white);
+    border-color: transparent transparent var(--white) transparent;
+    position: absolute;
+    left: 60px ;
+    top: -20px;
+}
+.menu li a {
+    font-size: 1.7rem;
+  }
+.toggle {
+    font-size: 2.5rem;
+}
+@media only screen and (max-width: 790px){
+.cart-icon {
+    font-size: 2rem;
+    position: absolute;
+    right: 5%;
+    top: -14px;
+}
+}
+.ic{
+	margin-top: 0;
+}
+
+@media only screen and (max-width: 400px){
+.ic{
+	margin-top: 10px;
+}
+}
+.slick-track{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;	
+}
+.menu li a{
+	font-size: 2.1rem;
+}
+
+</style>
+
+</head>
+
+<body>
+<header>	
+	<!-- /BREADCRUMB -->
+ <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:index" %}>Home</a></li>
+                        <li class="category-dropdown"><a href="#">Categories</a>
+                            <ul class="sub-category">
+                               {% for item in category %}
+                                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href={% url "shop:myorders" %}>My Orders</a></li>
+                        <li><a href="{% url "shop:cart" %}" style="position: relative;
+                          padding: 10px 10px;" >Cart<span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                        {% if user.is_authenticated %}
+                          <!-- <li><a href="#">{{user.first_name}}</a></li> -->
+                          <li><a href={% url "shop:myorders" %}>My Orders</a></li>
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                  
+                          <li class="login-dropdown"><a href="#">Login</a>
+                              <ul class="sub-login">
+                                  <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+                              </ul>
+                          </li>
+                          <li class="register-dropdown"><a href="#">Register</a>
+                              <ul class="sub-register">
+                                  <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+                              </ul>
+                          </li>
+        
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a  class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <div class="cart-box">
+                        <a href="/cart" class="cart-icon"><i class="fa fa-cart-plus"><span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: 20px;">
+            <li><a href={% url "shop:index" %}>Home</a></li>
+            <li class="new-category-dropdown"><a href="#">Categories<span class="fa fa-angle-down c-u-aero"></span>
+                    <span class="fa fa-angle-up c-d-aero"></span></a></a></li>
+            <ul class="new-sub-category">
+               {% for item in category %}
+              <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+              {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+             <!--  <li><a href="#">{{user.first_name}}</a></li> -->
+             <li><a href={% url "shop:myorders" %}>My Orders</a></li>
+              <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="new-register-dropdown"><a href="#">Register<span class="fa fa-angle-down r-u-aero"></span>
+                    <span class="fa fa-angle-up r-d-aero"></span></a></li>
+            <ul class="new-sub-register">
+                <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+            </ul>
+
+            <li class="new-login-dropdown"><a href="#">Login<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+            </ul>
+            {% endif %}
+            
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;font-size: 4rem;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h2 style="text-align: center;color: white;margin-top: 20px;font-weight: normal;">Product Details</h2>
+</section>
+	<!-- section -->
+	<div class="section" style="margin-bottom: 110px;">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view">
+								<img src={{item.image.url}} alt="" height="500px">
+							</div>
+							{% for att in attachment %}
+								{% if att|isVideo %}
+							<div class="product-view" style=""> 
+								<video controls="" width="100%" height="500px">
+									<source src={{att.media_attach.url}} type="video/mp4">
+									<source src={{att.media_attach.url}} type="video/ogg">
+								</video>
+							</div>
+								{% elif att|isImage %}
+							<div class="product-view">
+								<img src={{att.media_attach.url}} alt="" height="500px">
+							</div>
+								{% else %}
+							<div class="product-view">
+								<audio controls>
+								  <source src={{att.media_attach.url}} type="audio/ogg">
+								  <source src={{att.media_attach.url}} type="audio/mpeg">
+								Your browser does not support the audio element.
+								</audio>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+						<div id="product-view">
+							<div class="product-view">
+								<img src={{item.image.url}} alt="" height="100px">
+							</div>
+							{% for att in attachment %}
+								{% if att|isVideo %}
+							<div class="product-view" style="display: flex;align-items: center;text-align: center;justify-content: center;">
+								<video width="100%" height="100px">
+									<source src={{att.media_attach.url}} type="video/mp4">
+									<source src={{att.media_attach.url}} type="video/ogg">
+								</video>
+								<i style="position: absolute;font-size: 4rem;color: black;" class="fa fa-play-circle"></i>
+							</div>
+							{% elif att|isImage %}
+							<div class="product-view">
+								<img src={{att.media_attach.url}} alt="" height="100px">
+							</div>
+							{% else %}
+							<div class="product-view" style="display: flex;align-items: center;text-align: center;justify-content: center;">
+								<img src={{item.image.url}} alt="" height="100px"> 
+								<!-- <img src={{att.media_attach.url}} alt=""> -->
+								<i style="position: absolute;font-size: 5rem;color: black;" class="fa fa-play-circle"></i>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="product-body">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-20%</span>
+							</div>
+							<h2 class="product-name">{{item.title}}</h2>
+							{% if item.discount_price %}
+							<h3 class="product-price">Rs. {{item.discount_price}} <del class="product-old-price">Rs. {{item.price}}</del></h3>
+							{% else %}
+							<h3 class="product-price">Rs. {{item.price}}</h3>
+							{% endif %}
+							<div>
+								<div class="product-rating">
+        <i class="fa fa-star{% if item.avaregereview < 1%}-o empty{% endif%}"></i>
+        <i class="fa fa-star{% if item.avaregereview < 2%}-o empty{% endif%}"></i>
+        <i class="fa fa-star{% if item.avaregereview < 3%}-o empty{% endif%}"></i>
+        <i class="fa fa-star{% if item.avaregereview < 4%}-o empty{% endif%}"></i>
+        <i class="fa fa-star{% if item.avaregereview < 5%}-o empty{% endif%}"></i>
+        {{ item.avaregereview |stringformat:".2f"}}
+                                </div>
+                                <a href="#tab3"> {{ item.countreview}}  Review(s) / Add Review</a>
+								</div>
+							<p><strong>Availability:</strong> In Stock</p>
+							<p><strong>Brand:</strong> {{item.brandName}}</p>
+							<p><strong>Stock No:</strong> {{item.stock_no}}</p>
+							<p><strong>Product Id:</strong> {{item.unique_id}}</p>
+							<p><strong>Seller Name:</strong> {{item.seller.user.first_name}}</p>
+							<p><strong>Seller Id:</strong> {{item.seller.unique_id}}</p>
+							<!-- <p>{{item.description_short|safe}}</p> -->
+							<!-- <div class="product-options">
+								<ul class="size-option">
+									<li><span class="text-uppercase">Size:</span></li>
+									<li class="active"><a href="#">S</a></li>
+									<li><a href="#">XL</a></li>
+									<li><a href="#">SL</a></li>
+								</ul>
+								<ul class="color-option">
+									<li><span class="text-uppercase">Color:</span></li>
+									<li class="active"><a href="#" style="background-color:#475984;"></a></li>
+									<li><a href="#" style="background-color:#8A2454;"></a></li>
+									<li><a href="#" style="background-color:#BF6989;"></a></li>
+									<li><a href="#" style="background-color:#9A54D8;"></a></li>
+								</ul>
+							</div> -->
+
+							<div class="product-btns row">
+							
+                  	  <div class="flex-w bo5 of-hidden col-lg-4 col-sm-6">
+								<button name="minus" 
+								class="btn btn-num-product-down color1 flex-c-m size7 bg8 eff2" onclick="handlebtnClickminus()" style="background: white; color: #FE4A55">
+									<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+								</button>
+
+								<input class="t-center " type="number" name="num" id="qtNum" value="1" style="border: 1;width: 50%;" readonly="">
+
+								<button name="plus" 
+								class="btn btn-num-product-up color1 flex-c-m size7 bg8 eff2" onclick="handlebtnClickplus()" style="background: white; color: #FE4A55">
+									<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+								</button>
+							</div>
+   
+		<script>
+
+			function changeLink() {
+				qt = document.getElementById('qtNum').value;
+				id = '{{item.id}}'
+				document.getElementById('cart_link').href = `/add-to-cart/${id}/${qt}/`;
+			}
+
+	 		function handlebtnClickplus() {
+	 			var qt = document.getElementById('qtNum').value
+	 			console.log(qt)
+	 			document.getElementById('qtNum').value = parseInt(qt) + 1;
+	 			changeLink();
+	 		}
+
+	 		function handlebtnClickminus(e) {
+	 			var qt = document.getElementById('qtNum').value
+	 			if(qt != 1)
+	 				document.getElementById('qtNum').value = qt - 1;
+	 			changeLink();
+	 		}
+		</script>
+								<a class="col-lg-4 col-sm-6" href="{% url "shop:addItemToCart" item.id 1 %}" style="margin-bottom: 10px;" id="cart_link">
+									<button name="cart" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								</a>
+								<!-- <div class="col-lg-4 col-sm-6 ic">
+									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav row">
+								<li class="active col-lg-2 col-sm-4"><a data-toggle="tab" href="#tab1">Product Description</a></li>
+								<li class=" col-lg-2 col-sm-4"><a data-toggle="tab" href="#tab2">Shipping Details</a></li>
+								<li class=" col-lg-2 col-sm-4"><a data-toggle="tab" href="#tab3">Reviews ({{item.countreview}})</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab1" class="tab-pane fade in active">
+									<p>{{item.description_short|safe}}</p>
+								</div>
+								<div id="tab2" class="tab-pane fade in">
+									<p>{{item.description_long|safe}}</p>
+								</div>
+
+								<div id="tab3" class="tab-pane fade in">
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="product-reviews">
+			{% for rs in comment %}
+			<div class="single-review">
+				<div class="review-heading">
+					<div><a href="#"><i class="fa fa-user-o"></i>{{ rs.subject }}</a></div>
+					<div><a href="#"><i class="fa fa-clock-o"></i> {{ rs.create_at}}</a></div>
+					<div class="review-rating pull-right">
+                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                    </div>
+				</div>
+				<div class="review-body">
+					<p>{{ rs.comment }}</p>
+				</div>
+			</div>
+			{% endfor %}
+												
+			{% if comment.0 %}
+
+												<ul class="reviews-pages">
+													<li class="active">1</li>
+													<li><a href="#">2</a></li>
+													<li><a href="#">3</a></li>
+													<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+												</ul>
+			{% else %}
+			<p>No Reviews are posted</p>
+			{% endif %}
+											</div>
+										</div>
+										<div class="col-md-6">
+											<h4 class="text-uppercase">Write Your Review</h4>
+											<p>Your email address will not be published.</p>
+											 {% if messages %}
+		                                        {% for message in messages %}
+		                                            <div class="alert alert-{{message.tags}}" role="alert">
+		                                                {{ message }}
+		                                            </div>
+		                                        {% endfor %}
+		                                    {% endif %}
+											<form class="review-form" action={% url 'shop:addcomment' item.id %} method="post"> {% csrf_token %}
+												<div class="form-group">
+													<input class="input" name="name"  type="text" placeholder="Your Name" required="text" />
+												</div>
+												<div class="form-group">
+													<input class="input" name="email" type="email" placeholder="Email Address" required="email" />
+												</div>
+												<div class="form-group">
+													<textarea name="comment"  class="input" placeholder="Your review" required="text"></textarea>
+												</div>
+												<div class="form-group">
+													<div class="input-rating">
+														<strong class="text-uppercase">Your Rating: </strong>
+														<div class="stars">
+															<input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+															<input type="radio" id="star4" name="rating4" value="4" /><label for="star4"></label>
+															<input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+															<input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+															<input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+														</div>
+													</div>
+												</div>
+												<button type="submit" name="submit" class="primary-btn">Submit</button>
+											</form>
+										</div>
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+{% include 'footer.html' %}
+	<!-- /FOOTER -->
+<!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'> -->
+ 	
+ </script><script  src="{% static 'script.js' %}"></script>
+	<!-- jQuery Plugins -->
+	<!-- <script src="{% static 'js/jquery.min.js' %}"></script> -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

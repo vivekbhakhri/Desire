@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Desire || Myorders</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+ <link rel="stylesheet" href="{% static 'css/ECART.css' %}">  
+    <style type="text/css">
+      @media screen and (max-width: 1000px){
+  
+.dcart{
+  display: none;
+}
+}
+
+.textarea{
+  height: 100px;
+  width: 50%; 
+  border-color: green;
+  float: right;
+  border-radius: 10px;
+}
+@media screen and (max-width: 700px){
+  .textarea{
+  height: 100px;
+  width: 100%; 
+  border-color: green;
+  float: right;
+  border-radius: 10px;
+}
+}
+
+  .multi-steps > li.is-active:before, .multi-steps > li.is-active ~ li:before {
+  content: counter(stepNum);
+  font-family: inherit;
+  font-weight: 700;
+}
+.multi-steps > li.is-active:after, .multi-steps > li.is-active ~ li:after {
+  background-color: #ededed;
+}
+
+.multi-steps {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.multi-steps > li {
+  counter-increment: stepNum;
+  text-align: center;
+  display: table-cell;
+  position: relative;
+  color: tomato;
+}
+.multi-steps > li:before {
+  content: '\f00c';
+  content: '\2713;';
+  content: '\10003';
+  content: '\10004';
+  content: '\2713';
+  display: block;
+  margin: 0 auto 4px;
+  background-color: #fff;
+  width: 36px;
+  height: 36px;
+  line-height: 32px;
+  text-align: center;
+  font-weight: bold;
+  border-width: 2px;
+  border-style: solid;
+  border-color: tomato;
+  border-radius: 50%;
+}
+
+.multi-steps > li.is-active1:before, .multi-steps > li.is-active1 ~ li:before {
+  content: '\2716';
+  font-family: inherit;
+  font-weight: 700;
+}
+
+.multi-steps > li:after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: tomato;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: -1;
+}
+.multi-steps > li:last-child:after {
+  display: none;
+}
+.multi-steps > li.is-active:before {
+  background-color: #fff;
+  border-color: tomato;
+}
+.multi-steps > li.is-active ~ li {
+  color: #808080;
+}
+.multi-steps > li.is-active ~ li:before {
+  background-color: #ededed;
+  border-color: #ededed;
+}
+
+.shopping-cart{
+  display: none;
+}
+
+.shopping-cart.switched{
+  display: block;
+}
+
+.more{
+  display: block;
+}
+
+.more.switched{
+  display: none;
+}
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+  html, body{
+    overflow-x: hidden;
+  }
+
+    </style>
+  </head>
+  <body>
+    
+	<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:index" %}>Home</a></li>
+                        <li class="category-dropdown"><a href="#">Categories</a>
+                            <ul class="sub-category">
+                                {% for item in category %}
+                                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% if user.is_authenticated %}
+                          <!-- <li><a href="#">{{user.first_name}}</a></li> -->
+                           <li><a href="{% url "shop:cart" %}" style="position: relative;
+                          padding: 10px 10px;" >Cart<span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                        <li class="register-dropdown"><a href="#">Register</a>
+                            <ul class="sub-register">
+                                <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+                            </ul>
+                        </li>
+                        <li class="login-dropdown"><a href="#">Login</a>
+                            <ul class="sub-login">
+                                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                       
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <div class="cart-box">
+                        <a href="/cart" class="cart-icon"><i class="fal fa-cart-plus"><span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: -20px;">
+            <li><a href={% url "shop:index" %}>Home</a></li>
+            <li class="new-category-dropdown"><a href="#">Categories<span class="fa fa-angle-down c-u-aero"></span>
+                    <span class="fa fa-angle-up c-d-aero"></span></a></a></li>
+            <ul class="new-sub-category">
+               {% for item in category %}
+                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+              <!-- <li><a href="#">{{user.first_name}}</a></li> -->
+              <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="new-register-dropdown"><a href="#">Register<span class="fa fa-angle-down r-u-aero"></span>
+                    <span class="fa fa-angle-up r-d-aero"></span></a></li>
+            <ul class="new-sub-register">
+                <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+            </ul>
+
+            <li class="new-login-dropdown"><a href="#">Login<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+            </ul>
+            {% endif %}
+                        <!-- <li><a href={% url "shop:cart" %}>Cart</a></li> -->
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h2 style="text-align: center;color: white;margin-top: 20px;">My Orders</h2>
+</section>
+<h4 class="container" style="
+    text-align: center;
+">Customer ID: {{profile.unique_id}}</h4>
+ {% if orders %}
+{% for order in orders %}
+<div style="margin-bottom: 110px;">
+<div class="container" style="margin-top: 10px;">
+  <h3 style="font-size: 25px;">Order ID: {{profile.unique_id}}O{{order.id}}<br>Reference Id: {{order.ref_code}} </h3>
+  <h4 style="font-size: 20px;">{{order.item.title}}</h4>
+  <h4 style="font-size: 20px;">Price: {{order.totalPrice}}rs</h4>
+  <section>
+    <textarea rows="2" cols="20" placeholder="Message from the Seller" readonly>{% if order.seller_msg %}{{order.seller_msg}}{% endif %}</textarea></section>
+  <div class="container-fluid">
+  <br /><br />
+  <ul class="list-unstyled multi-steps">
+    <li>Ordered</li>
+    {% if order.order_placed == True %}
+    <li >Order Accepted</li>
+    {% if order.being_delivered == True %}
+    <li >Delivered</li>
+    {% endif %}
+    {% elif order.order_rejected == True %}
+    <li class='is-active1'>Order cancled</li>
+    {% endif %}
+  </ul>
+</div>
+<!-- <input class="more" type="button" name="read_more" value="read more" style="padding: 5px 15px;margin-bottom: 10px;margin-left: 50px;margin-top: 50px;" id="more-{{forloop.counter}}">
+
+<div style="margin-top: 20px;" class="container shopping-cart" id="shopping-cart-{{forloop.counter}}"> -->
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-line-price">Total</label>
+  </div>
+  <div class="product">
+    <div class="product-image">
+      <img src={{order.item.image.url}} >
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{order.item.title}}</div>
+      <p class="product-description">{{order.item.description_short|safe}}</p>
+    </div>
+    <div class="product-price">
+    {% if order.item.discount_price %}
+      {{order.item.discount_price}}
+      {% else %}
+    {{order.item.price}}
+      {% endif %}
+</div>
+    <div class="product-quantity">
+      <!-- <input type="number" value="2" min="1"> -->
+      <p>{{order.quantity}}</p>
+    </div>
+    <!-- <div class="product-removal">
+      <button class="remove-product">
+        Remove
+      </button>
+    </div> -->
+    <div class="product-line-price">{{order.price}}</div>
+  </div>
+  <div class="totals" style="margin-right: 50px;">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">{{order.price}}</div>
+    </div>
+        <div class="totals-item">
+      <label>Service Charges:</label>
+      <div class="totals-value" id="cart-subtotal">{{order.tax}}</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">{{order.totalPrice}}</div>
+    </div>
+  </div>
+<!--   <input class="less" type="button" name="read_more" value="read less" style="padding: 5px 15px;" id="less-{{forloop.counter}}">
+
+</div> -->
+<hr class="line1" style="border-top: 3px solid black;">
+{% endfor %}
+{% else %}
+<h1 style="text-align: center;margin-top: 100px;margin-bottom: 200px">You Don't Have Any Orders Placed</h1>
+{% endif %}
+</div>
+
+</div>
+<footer class="" id="footer" style="background-color: #100f15;bottom: 0;width: 100%;margin: 0;padding: 0;left: 0;right: 0;overflow-x: hidden; position:fixed; margin-top: 100px;">
+  <div class="row" style="display: block;align-items: center;justify-content: center;text-align: center;display: flex;align-content: center;padding-top: 20px;">
+        <div class="col-lg-5 col-sm-12 text-center" >
+         <a href="#" class="mx-1">
+          
+            <i class="fa fa-twitter social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+          
+            <i class="fa fa-instagram social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+            
+            <i class="fa fa-youtube-play social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+            
+            <i class="fa fa-linkedin social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+           
+            <i style="padding: 5px 8px;" class="fa fa-facebook social"></i>
+         </a>
+      </div>
+ 
+  </div>
+</footer>
+<!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+ <script  src="{% static 'script.js' %}"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js'></script>
+<script  src="{% static 'slide.js' %}"></script>  
+
+
+  <script>
+(function($) { "use strict";
+
+    $(document).ready(function() {
+    $('body.hero-anime').removeClass('hero-anime');
+  });
+
+  //Switch light/dark
+  
+  $(".more, .less").on('click', function (e) {
+  console.log(e.target.id)
+  var id = e.target.id
+  id = id.split("-")
+  id = id[id.length-1]
+  if ($("body").hasClass("dak")) {
+  $("body").removeClass("dak");
+  $(`#shopping-cart-${id}, #more-${id}, .line`).removeClass("switched");
+  }
+  else {
+  $("body").addClass("dak");
+  $(`#shopping-cart-${id}, #more-${id}, .line`).addClass("switched");
+  }
+  }); 
+  
+  })(jQuery);
+
+</script>
+  
+    
+  </body>
+</html>

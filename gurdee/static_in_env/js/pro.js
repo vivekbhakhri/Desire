@@ -1,0 +1,1 @@
+/* this is a spinoff of the orginal website https://www.glossier.com/ */

@@ -1,0 +1,392 @@
+/* ================================================ 
+  Estilos Globales 
+================================================ */
+:root {
+  --font-body: "Poppins", sans-serif;
+
+  --size-full: 100%;
+  --wd-main-content: 1250px;
+  --hg-main-content: 620px;
+  --pd-tab-content: 25px;
+  --wd-content-left: 30%; /* Valor por defecto: 30% */
+  --wd-content-right: 70%; /* Valor por defecto: 70% */
+  --hg-navbar-link: 50px;
+
+  --primary: #0135eb;
+  --acent: #4dd599;
+  --darker: #0a1035;
+  --light: #f9f9f9;
+  --gray: #abacc0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+/*  margin: 0;*/
+  font-family: var(--font-body);
+  /*display: flex;*/
+  align-items: center;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+figure {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* ----- Se ocultan todos los inputs que inicien con la clase tab- ----- */
+input[class*="tab-"],
+[class*="tab-content-"] {
+  display: none;
+}
+
+/* ----- Cuando esta checkeado un input se muestra el contenido del propio tab ----- */
+.tab-1:checked ~ .tab-content-1,
+.tab-2:checked ~ .tab-content-2,
+.tab-3:checked ~ .tab-content-3,
+.tab-4:checked ~ .tab-content-4,
+.tab-5:checked ~ .tab-content-5,
+.tab-6:checked ~ .tab-content-6 {
+  display: block;
+}
+
+/* ----- Estilos de los contendinos padre ----- */
+.main-content,
+.main-content__left,
+.main-content__right {
+  /* Asegurar el alto de ambos contenedores padre para el Scroll */
+  height: var(--hg-main-content); /* 620px */
+  overflow: hidden;
+}
+
+.main-content {
+  width: 90%;
+  max-width: var(--wd-main-content); /* 1250px */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: 50px auto;
+  box-shadow: 0px 0px 10px 6px #cecbd2;
+}
+
+.main-content__left {
+  width: var(--wd-content-left); /* 30% */
+}
+
+.main-content__right {
+  width: var(--wd-content-right); /* 70%px */
+  background-color: #fff;
+}
+
+/* ================================================ 
+  Estilos del fondo detras 
+================================================ */
+body {
+  position: relative;
+  height: 100vh; /* cambiar tamaño en responsive */
+}
+
+.body__overlay,
+.body__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.body__overlay {
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -5;
+}
+
+.body__img {
+  z-index: -10;
+  object-fit: cover;
+}
+
+/* ================================================ 
+  Estilos del User Profile
+================================================ */
+.user-profile {
+  height: 100%;
+  box-shadow: 0 0 80px 35px rgba(0, 0, 0, 0.9) inset;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
+
+.user-profile:hover {
+  box-shadow: 0 0 130px 65px rgba(0, 0, 0, 0.9) inset;
+}
+
+.user-profile__bg,
+.user-profile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-profile__bg {
+  display: none;
+}
+
+.user-profile__img {
+  position: absolute;
+  z-index: -5;
+}
+
+.user-profile__info {
+  width: 100%;
+  padding-left: 20px;
+  color: #fff;
+  text-transform: capitalize;
+  line-height: 1.3;
+  position: absolute;
+  bottom: 40px;
+  z-index: 5;
+}
+
+.user-profile__name {
+  margin-bottom: 7px;
+  font-size: 21px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.user-profile__ocupation strong {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.user-profile__tagline {
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--acent);
+}
+
+/* ================================================ 
+  Estilos de la navegación
+================================================ */
+.navbar {
+  width: 100%;
+  background: var(--light);
+}
+
+.navbar__menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar__item {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.navbar__link {
+  height: var(--hg-navbar-link); /* 50px */
+  display: block;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: var(--hg-navbar-link); /* 50px */
+  border-bottom: 2px solid transparent;
+  color: var(--darker);
+  transition: color, border, background,
+    0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.navbar__link i {
+  margin-left: 5px;
+  pointer-events: none;
+}
+
+.navbar__link span {
+  pointer-events: none;
+}
+
+.navbar__link:hover {
+  color: #fe4a55;
+  background-color: #ececec;
+}
+
+.active {
+  color: #fe4a55;
+  border-bottom-color: #fe4a55;
+  background-color: #fff;
+}
+
+.active:hover {
+  background-color: #fff;
+}
+
+/* ================================================ 
+  Estilos del contenido de los tabs
+================================================ */
+[class*="tab-content-"] {
+  height: calc(100% - var(--hg-navbar-link)); /* 100% - 50px */
+  overflow-y: auto;
+}
+
+[class*="tab-content-"] > section {
+  /* solamente aplica a las etiquetas <section> */
+  padding: var(--pd-tab-content);
+}
+
+/* ------ Personalizacion del scrollbar ------ */
+[class*="tab-content-"]::-webkit-scrollbar {
+  width: 8px;
+}
+
+[class*="tab-content-"]::-webkit-scrollbar-thumb {
+  background-color: #fe4a55;
+  border-radius: 5px;
+}
+
+[class*="tab-content-"] {
+  scrollbar-color: rgba(0, 0, 0, 0.3);
+  scrollbar-width: thin;
+}
+
+/* ==================================================================================================================*/
+
+/* ================================================ 
+  Media Queries en tamaño: 1024px Laptops
+================================================ */
+@media screen and (max-width: 1024px) {
+  :root {
+    --wd-content-left: 100%;
+    --wd-content-right: 100%;
+    --hg-navbar-link: 50px;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ================================================ 
+  Estilos del fondo detras en modo responsive
+  ================================================ */
+  .body__overlay {
+    background: var(--acent);
+  }
+
+  .body__img {
+    display: none;
+  }
+
+  /* ----- Estilos de los contendinos padre ----- */
+  .main-content {
+    overflow: visible;
+  }
+
+  .main-content,
+  .main-content__right {
+    height: auto;
+  }
+
+  .main-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 90%;
+    max-width: var(--wd-main-content); /* 1250px */
+  }
+
+  .main-content__left {
+    width: var(--wd-content-left);
+    height: 320px;
+  }
+
+  .main-content__right {
+    width: var(--wd-content-right);
+    background-color: #f7f7f7;
+    box-shadow: 0 0 13px 7px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+  }
+
+  /* ================================================ 
+  Estilos del User Profile responsive
+================================================ */
+  .user-profile::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .user-profile__bg {
+    display: block;
+  }
+
+  .user-profile__bg::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .user-profile__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%, -80%);
+  }
+
+  .user-profile__info {
+    text-align: center;
+  }
+}
+
+/* ================================================ 
+  Media Queries en tamaño: 768px Tablets
+================================================ */
+
+@media screen and (max-width: 768px) {
+  .navbar__link span {
+    display: none;
+  }
+
+  .navbar__link i {
+    font-size: 18px;
+    text-align: center;
+  }
+}

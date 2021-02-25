@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire || Seller Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+   
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="{% static 'css/serviceproduct.css' %}">
+
+<style type="text/css">
+  
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+
+  .ed{
+    max-width: 40%;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-decoration: none;
+  }
+
+  .ed.delete{
+    border: 1px solid red;
+    color: red;
+    margin-left: 15px;
+  }
+
+  .ed.edit{
+    border: 1px solid blue;
+    color: blue;
+    margin-left: 40px;
+  }
+
+  .yes{
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 15px;
+  }
+  .yes:hover, .no:hover{
+    color: white;
+  }
+  .no{
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 15px;
+  }
+  @media only screen and (max-width: 590px){
+      .brand {
+          top: -12px;
+          width: 150px;
+          height: auto;
+          margin-left: -65px;
+      }
+}
+.menu li a {
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding: 25px;
+}
+.toggle {
+    font-size: 2.5rem;
+}
+.menu li a{
+  font-size: 1.7rem;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:profile" %}>Profile</a></li>
+                        <li class="login-dropdown"><a href="#">Products</a>
+                            <ul class="sub-login">
+                                <li><a href={% url "shop:addproduct" %}>Add Product</a></li>
+                        <li><a href={% url "shop:serviceproduct" %}>My Products</a></li>
+                            </ul>
+                        </li>
+                        
+                         <li><a href={% url "shop:ordersreceived" %} style="position: relative;
+                          padding: 10px 10px;">Orders Received<span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                    <li><a href={% url "shop:logout" %}>Logout</a></li>
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: -20px;">
+            <li><a href={% url "shop:profile" %}>Profile</a></li>
+          <li class="new-login-dropdown"><a href="#">Products <span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href={% url "shop:addproduct" %}>Add Product</a></li>
+                <li><a href={% url "shop:serviceproduct" %}>My Products</a></li>
+            </ul>
+            <li><a href={% url "shop:ordersreceived" %}>Orders Received</a></li>
+                 <li><a href={% url "shop:logout" %}>Logout</a></li>
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h2 style="text-align: center;color: white;margin-top: 20px;">My Products</h2>
+</section>
+<center>
+
+<div class="main" style="margin-bottom: 110px;">
+  
+  <ul class="cards">
+    {% for item in items %}
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="{{item.image.url}}" style="
+    height: 400px;
+    width: 500px;
+"></div>
+        <div class="card_content" style="background-color: #f7f6f6;">
+          <h2 class="card_title">{{item.title}}</h2>
+          <p class="card_text">ID: {{item.unique_id}}</p>
+          <div class="row">
+          <a class="col-6 ed delete my-link" data-toggle="modal" data-target="#myModal" href="#" onclick="handleClick(this)"  name="{{item.id}}">Delete <i class="fa fa-trash"></i></a><a class="col-6 ed edit" href="{% url "shop:updateproduct" item.slug item.id %}">Edit <i class="fa fa-edit"></i></a>
+          </div>
+          <a href="{% url "shop:servicesingleproduct" item.slug item.id %}"><button class="btn card_btn">View Full Details</button></a>
+        </div>
+      </div>
+    </li>   
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you sure want to delete?</h4>
+        </div>
+        <div class="modal-body">
+          <a id="target-link" href="#" class="yes">Yes</a>
+          <a href="#" class="no">No</a>
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+</center>
+
+{% include 'footer.html' %}
+<script type="text/javascript">
+  function handleClick(e) {
+    document.getElementById("target-link").href="/deleteItem/"+e.name+"/";
+  }
+</script>
+</body>
+</html>

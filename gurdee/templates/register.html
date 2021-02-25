@@ -1,0 +1,188 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire ||Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+        
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+<style type="text/css">
+  .btn.btn-primary.login{
+    background-color: #fe4a55;
+    color: white;
+    width: 80%;
+  }
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .btn.btn-primary.login:hover{
+    background-color: #100f15;
+    color: white;
+  }
+  .a{
+    color: #fe4a55;
+  }
+  .a:hover{
+    color: #100f15;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+ 
+
+</style>
+
+</head>
+<body>
+
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:index" %}>Home</a></li>
+                        
+                        {% if user.is_authenticated %}
+                          <li><a href="#">{{user.first_name}}</a></li>
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                        <li class="register-dropdown"><a href="{% url 'shop:registration' %}">Register</a>
+                                                   </li>
+                        <li class="login-dropdown"><a href="#">Login</a>
+                            <ul class="sub-login">
+                                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <div class="cart-box">
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: -20px;">
+            <li><a href={% url "shop:index" %}>Home</a></li>
+            
+
+             {% if user.is_authenticated %}
+                          <li><a href="#">{{user.first_name}}</a></li>
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                        <li class="register-dropdown"><a href="{% url 'shop:registration' %}">Register</a>
+                                                  </li>
+                        <li class="login-dropdown"><a href="#">Login</a>
+                            <ul class="sub-login">
+                                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h4 style="text-align: center;color: white;margin-top: 20px;">Customer Registration Form</h4>
+</section>
+<center>
+<section style="background-color: white;padding-top: 60px;padding-bottom: 60px;margin-bottom: 110px;">
+
+    <div class="container">
+       {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+  <form method="POST" class="col-lg-6 col-sm-12" style="box-shadow: 0px 0px 10px 6px #cecbd2;padding: 60px 0px;">
+    {% csrf_token %}
+    {{form.errors}}
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Name:</label>
+      {% render_field form.first_name class="form-control" style="font-size: 20px;" placeholder="Enter Name" %}
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Email Address:</label>
+      {% render_field form.username class="form-control" style="font-size: 20px;" placeholder="Enter Email" %}
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Contact Number:</label>
+      {% render_field form.contact_number class="form-control" style="font-size: 20px;" placeholder="Enter Contact Number" %}
+    </div>
+     <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Alternate Contact Number (Optional):</label>
+      {% render_field form.alt_contact_number class="form-control" style="font-size: 20px;" placeholder="Enter Contact Number" %}
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">{{form.password1.label}}:</label>
+      {% render_field form.password1 class="form-control"  style="font-size: 20px;" placeholder="Enter Password" %}
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Confirm Password:</label>
+      {% render_field form.password2 class="form-control" style="font-size: 20px;" placeholder="Confirm Password" %}
+    </div>
+   <li><button type="submit" name="submit" class="btn btn-primary login col-lg-8 col-sm-10" style="font-size: 20px;">Submit</button></li> <br><br>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 15px;font-weight: bold;float: left;"><a href="/login" class="a">Already have an Account? login Here</a></label>
+    </div>
+  </form>
+</div>
+</section>
+</center>
+
+{% include 'footer.html' %}
+</body>
+</html>

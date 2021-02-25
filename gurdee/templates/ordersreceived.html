@@ -1,0 +1,556 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>The Desire || Orders Received</title>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto:300,400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+    
+
+      <style type="text/css">
+
+
+.info-box {
+  display: block;
+  min-height: 90px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  margin-bottom: 15px;
+  border: 3px solid #4dc0ef;
+}
+.warning-box{
+display: block;
+  min-height: 90px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  margin-bottom: 15px;
+  border: 3px solid #ff9800;
+}
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+  background-color: #00c0ef !important;
+  color: #fff !important;
+}
+.bg-warning{background-color: #ff9800 !important;
+  color: #fff !important;}
+.info-box-content {
+  padding: 5px 10px;
+  margin-left: 90px;
+}
+.info-box-icon {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  display: block;
+  float: left;
+  height: 87px;
+  width: 90px;
+  text-align: center;
+  font-size: 45px;
+  line-height: 90px;
+  background: rgba(0,0,0,0.2);
+}
+.info-box-text {
+  display: block;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.info-box-number {
+  display: block;
+  font-weight: bold;
+  font-size: 28px;
+}
+.fa {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.delivered{
+    color: green;
+    border-color: green;
+    margin-bottom: 10px;
+  }
+  .delivered:hover{
+    color: white;
+    border-color: green;
+    background-color: green;
+  }
+  .cancle{
+    color: red;
+    border-color: red;
+    padding-left: 20px;
+    padding-right: 20px; 
+  }
+  .cancle:hover{
+    color: white;
+    border-color: red;
+    background-color: red;
+  }
+.btn.btn-primary.login{
+    background-color: #fe4a55;
+    color: white;
+    width: 80%;
+  }
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .btn.btn-primary.login:hover{
+    background-color: #100f15;
+    color: white;
+  }
+  .a{
+    color: #fe4a55;
+  }
+  .a:hover{
+    color: #100f15;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+  @media only screen and (max-width: 590px){
+.brand {
+    top: -12px;
+    width: 150px;
+    height: auto;
+    margin-left: -55px;
+}
+}
+
+      </style>
+      
+   </head>
+   <body>
+     
+     <header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:profile" %}>Profile</a></li>
+                        <li class="login-dropdown"><a href="#">Products</a>
+                            <ul class="sub-login">
+                                <li><a href={% url "shop:addproduct" %}>Add Product</a></li>
+                        <li><a href={% url "shop:serviceproduct" %}>My Products</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href={% url "shop:ordersreceived" %} style="position: relative;
+                          padding: 10px 10px;">Orders Received<span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                        
+                        
+                        <li><a href={% url "shop:logout" %}>Logout</a></li>
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a href="index.html" class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <!-- <div class="cart-box">
+                        <a href="ECART.html" class="cart-icon"><i class="fal fa-cart-plus"></i></a>
+                    </div> -->
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+ <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: -20px;">
+            <li><a href="/profile">Profile</a></li>
+          <li class="new-login-dropdown"><a href="#">Products<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href="/addproduct">Add Product</a></li>
+                <li><a href="/serviceproduct">My Products</a></li>
+            </ul>
+            <li><a href="/ordersreceived">Orders Received</a></li>
+                        <li><a href="/logout">Logout</a></li>
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h4 style="text-align: center;color: white;margin-top: 20px;">Orders Received</h4>
+</section>
+<center>
+
+    
+<div class="" style="margin-top: 50px;width: 100%;">
+     <div class="row">
+ 
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Total Orders</span>
+            <span class="info-box-number">{{totalOrders}}</span>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Pending</span>
+          <span class="info-box-number">{{ordersPending}}</span>
+      </div>
+  </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Accepted</span>
+          <span class="info-box-number">{{ordersAccepted}}</span>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+   <div class="" style="margin-top: 20px;width: 100%;">
+   <div class="row">
+ 
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Orders Cancelled</span>
+            <span class="info-box-number">{{ordersCancelled}}</span>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Orders Delivered</span>
+          <span class="info-box-number">{{ordersDelivered}}</span>
+      </div>
+  </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12">
+  <div class="warning-box">
+      <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+      <div class="info-box-content">
+          <span class="info-box-text">Subscription Ends With In</span>
+          <span class="info-box-number">{{subsDate}} Days</span>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+{% if displayInfo %}
+
+<table id="content-table3" class="table-responsive-full sort-table" style="padding:1em;position: relative;margin-bottom: 200px; ">
+  <thead>
+    <tr>
+      <th class="title">Order Id
+        <div class="sort-table-arrows">
+          <a href="javascript:sort(true, 'title', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+          <a href="javascript:sort(false, 'title', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+        </div>
+      </th>
+      <th class="title">Name
+      </th>
+      <th class="composer">Address
+      </th>
+      <th class="lyrics">Ordered Items
+      </th>
+      
+      <th class="arranger">Price</th>
+      <th class="decision">Status</th>
+      <!-- <th class="arranger">Arranger / Editing</th> -->
+      <th class="set">Reason.
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for item in orders %}
+    <tr>
+      <td data-label="Order Id" class="title" class="title">Order Id: {{profile.unique_id}}O{{item.id}}<br>Reference Id: {{item.ref_code}} </td>
+      <td data-label="Customer Details" class="composer"><b>Customer Name:</b><br>{{item.billing_address.fname}}, {{item.billing_address.lname}}<br><b>Contact Details:<br>Mob No: {{item.billing_address.number}}<br>Email-Id: {{item.billing_address.email}}<br>Ordered Before: {{item.ordered_date |timesince}}<br>Ordered Date: {{item.ordered_date |date}}</td>
+      <td data-label="Address" class="lyrics"><b>Apartment Address :</b>{{item.billing_address.apartment_address}}<br><b>Street Address1 :</b>{{item.billing_address.street_address}}<br> {% if item.billing_address.address %}<b>Street Address2 :</b>{{item.billing_address.address}}<br>
+        {% endif %}<b>City :</b>{{item.billing_address.city}}<br><b>State :</b>{{item.billing_address.state}}<br><b>Postal / Zip Code :</b>{{item.billing_address.zip}}</td>
+         <td data-label="Ordered Items" >Item Id:-<b>{{item.item.unique_id}} </b><br>{{item.item.title}},(<b>Qty:</b>{{item.quantity}})<br> <b>Special Requirements: -</b><br>{{item.billing_address.specialInstructions}}</td>
+       <!--  <td data-label="Message"></td> -->
+      <td data-label="Price" class="set"><b>Total Price:</b> Rs.{{item.price}}<br><!-- <b>Tax:</b>Rs.{{item.tax}} --><!-- <br><b>Total Price: Rs.{{item.totalPrice}} --><!-- <br><b>Payment Option:</b><br>Online --></td>
+      <td data-label="decision" class="set">
+        {% if item.order_placed == False %}
+        {% if item.order_rejected == False %}
+
+         <a href={% url "core:accept_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Accept</i></button></a>
+
+         {% endif %}
+        {% endif %}
+        {% if item.being_delivered == False %}
+        {% if item.order_placed == True %}
+        <span class="badge btn-success btn-sm" style="font-size:1.0em;">Accepted</span><div></div><br>
+
+         <a href={% url "core:delivered_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Delivered</i></button></a><br>
+        {% endif %}
+        {% endif %}
+        {% if item.order_rejected == False %}
+        {% if item.order_placed == False %}
+
+        <a href={% url "core:decline_order" item.id %}><button class="cancle"><i class="fa fa-times" aria-hidden="true">Cancel</i></button></a>
+
+        {% endif %}
+        {% endif %}
+        {% if item.being_delivered == True %}<span class="badge btn-success btn-sm" style="font-size:1.0em;">Completed</span>{% endif %}
+        {% if item.order_rejected == True %} <span class="badge btn-danger btn-lg" style="font-size:1.0em;">Canceled</span>{% endif %}
+      </td>
+      <td data-label="Message">
+        {% if item.seller_msg %}<p>Your Previous Message: </p><div style="text-align: right; margin-bottom: 10px;"><label class="badge  badge-info">{{item.seller_msg}}</label></div>{% endif %}
+        <form action={% url "shop:addmsg" item.id %} method="POST">
+          {% csrf_token %}
+          <textarea name="msg" rows="4" cols="10" placeholder="Reason to be entered incase of Late Delivery or Order Cancel..."></textarea><br>
+          <input type="submit" value="Submit">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation" >
+  <ul class="pagination" style="margin-left: 50%;transform: translate(-50%); color:#FF405E;">
+    {% if orders.has_previous %}
+       <li> <a class="page-item pagination-action" href="?page=1" tabindex="-1" id="myTab">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a></li>
+       <li> <a class="page-item pagination-action"id="myTab" tabindex="-1" href="?page={{ orders.previous_page_number }}">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+    {% for num in orders.paginator.page_range %}
+        {% if orders.number == num %}
+           <li> <span class="page-item pagination-number pagination-current" id="myTab" tabindex="-1" style="background-color: #FF405E; color:white;">{{ num }}</span></li>
+        {% elif num > orders.number|add:'-3' and num < orders.number|add:'3' %}
+          <li>  <a class="page-item pagination-number"id="myTab" tabindex="-1"  href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if orders.has_next %}
+       <li> <a class="page-item pagination-action" id="myTab" tabindex="-1" href="?page={{ orders.next_page_number }}">
+            <i class="fa fa-angle-right"id="myTab" aria-hidden="true"></i>
+        </a></li>
+        <li><a class="page-item pagination-action"id="myTab" href="?page={{ orders.paginator.num_pages }}">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% else %}
+
+<h2 style="
+    margin-top: 100px;
+">Your Subscription Plan Has Expired. Subscribe Again to View New Orders.</h2>
+<table id="content-table3" class="table-responsive-full sort-table" style="padding:1em;position: relative;margin-bottom: 200px; ">
+  <thead>
+    <tr>
+      <th class="title">Order Id
+        <div class="sort-table-arrows">
+          <a href="javascript:sort(true, 'title', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+          <a href="javascript:sort(false, 'title', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+        </div>
+      </th>
+      <th class="title">Name
+      </th>
+      <th class="composer">Address
+      </th>
+      <th class="lyrics">Ordered Items
+      </th>
+      
+      <th class="arranger">Price</th>
+      <th class="decision">Status</th>
+      <!-- <th class="arranger">Arranger / Editing</th> -->
+      <th class="set">Reason
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for item in orders %}
+    <tr>
+      <td data-label="Order Id" class="title" class="title">Order Id: {{profile.unique_id}}O{{item.id}}<br>Reference Id: {{item.ref_code}} </td>
+      <td data-label="Customer Details" class="composer"><b>Customer Name:</b><br>{{item.billing_address.fname}}, {{item.billing_address.lname}}<br><b>Contact Details:<br>Mob No: {{item.billing_address.number}}<br>Email-Id: {{item.billing_address.email}}<br>Ordered Before: {{item.ordered_date |timesince}}<br>Ordered Date: {{item.ordered_date |date}}</td>
+      <td data-label="Address" class="lyrics"><b>Apartment Address :</b>{{item.billing_address.apartment_address}}<br><b>Street Address1 :</b>{{item.billing_address.street_address}}<br> {% if item.billing_address.address %}<b>Street Address2 :</b>{{item.billing_address.address}}<br>
+        {% endif %}<b>City :</b>{{item.billing_address.city}}<br><b>State :</b>{{item.billing_address.state}}<br><b>Postal / Zip Code :</b>{{item.billing_address.zip}}</td>
+         <td data-label="Ordered Items" >Item Id:-<b>{{item.item.unique_id}} </b><br>{{item.item.title}},(<b>Qty:</b>{{item.quantity}})<br> <b>Special Requirements: -</b><br>{{item.billing_address.specialInstructions}}</td>
+       <!--  <td data-label="Message"></td> -->
+      <td data-label="Price" class="set"><b>Total Price:</b> Rs.{{item.price}}<br><!-- <b>Tax:</b>Rs.{{item.tax}} --><!-- <br><b>Total Price: Rs.{{item.totalPrice}} --><!-- <br><b>Payment Option:</b><br>Online --></td>
+      <td data-label="Status" class="set">
+        {% if item.order_placed == False %}
+        {% if item.order_rejected == False %}
+
+         <a href={% url "core:accept_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Accept</i></button></a>
+
+         {% endif %}
+        {% endif %}
+        {% if item.being_delivered == False %}
+        {% if item.order_placed == True %}
+        <span class="badge btn-success btn-sm" style="font-size:1.0em;">Accepted</span><div></div><br>
+
+         <a href={% url "core:delivered_order" item.id %}><button class="delivered"><i class="fa fa-check" aria-hidden="true">Delivered</i></button></a><br>
+        {% endif %}
+        {% endif %}
+        {% if item.order_rejected == False %}
+        {% if item.order_placed == False %}
+
+        <a href={% url "core:decline_order" item.id %}><button class="cancle"><i class="fa fa-times" aria-hidden="true">Cancel</i></button></a>
+
+        {% endif %}
+        {% endif %}
+        {% if item.being_delivered == True %}<span class="badge btn-success btn-sm" style="font-size:1.0em;">Completed</span>{% endif %}
+        {% if item.order_rejected == True %} <span class="badge btn-danger btn-lg" style="font-size:1.0em;">Canceled</span>{% endif %}
+      </td>
+      <td data-label="Reason">
+        {% if item.seller_msg %}<p>Your Previous Message: </p><div style="text-align: right; margin-bottom: 10px;"><label class="badge  badge-info">{{item.seller_msg}}</label></div>{% endif %}
+        <form action={% url "shop:addmsg" item.id %} method="POST">
+          {% csrf_token %}
+          <textarea name="msg" rows="4" cols="10" placeholder="Message for The Customer..."></textarea><br>
+          <input type="submit" value="Submit">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation" >
+  <ul class="pagination" style="margin-left: 50%;transform: translate(-50%); color:#FF405E;">
+    {% if orders.has_previous %}
+       <li> <a class="page-item pagination-action" href="?page=1" tabindex="-1" id="myTab">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a></li>
+       <li> <a class="page-item pagination-action"id="myTab" tabindex="-1" href="?page={{ orders.previous_page_number }}">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+    {% for num in orders.paginator.page_range %}
+        {% if orders.number == num %}
+           <li> <span class="page-item pagination-number pagination-current" id="myTab" tabindex="-1" style="background-color: #FF405E; color:white;">{{ num }}</span></li>
+        {% elif num > orders.number|add:'-3' and num < orders.number|add:'3' %}
+          <li>  <a class="page-item pagination-number"id="myTab" tabindex="-1"  href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if orders.has_next %}
+       <li> <a class="page-item pagination-action" id="myTab" tabindex="-1" href="?page={{ orders.next_page_number }}">
+            <i class="fa fa-angle-right"id="myTab" aria-hidden="true"></i>
+        </a></li>
+        <li><a class="page-item pagination-action"id="myTab" href="?page={{ orders.paginator.num_pages }}">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %} 
+<style type="text/css">
+     html{
+  position:relative; 
+  min-height: 100%;
+}
+html,body{
+  margin:0;
+  padding:0;
+}
+  #myTab{
+    color: #FF405E;
+    font-size: 15px;
+    font-style: bold;
+  }
+  #footer{
+   background-color: #100f15;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   left: 0;
+   right: 0;
+   overflow-x: hidden; 
+}
+</style>
+<footer class="" id="footer" style="background-color: #100f15;bottom: 0;width: 100%;margin: 0;padding: 0;left: 0;right: 0;overflow-x: hidden; position:fixed; margin-top: 100px;">
+  <div class="row" style="display: block;align-items: center;justify-content: center;text-align: center;display: flex;align-content: center;padding-top: 20px;">
+        <div class="col-lg-5 col-sm-12 text-center" >
+         <a href="#" class="mx-1">
+          
+            <i class="fa fa-twitter social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+          
+            <i class="fa fa-instagram social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+            
+            <i class="fa fa-youtube-play social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+            
+            <i class="fa fa-linkedin social"></i>
+         </a>
+         <a href="#" class="w-6 mx-1">
+           
+            <i style="padding: 5px 8px;" class="fa fa-facebook social"></i>
+         </a>
+      </div>
+ 
+  </div>
+</footer>
+
+<script src="{% static 'jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'ECART.js' %}"></script>
+
+
+
+
+     
+  <script  src="{% static 'table.js' %}"></script>
+   </body>
+
+
+</html>
+

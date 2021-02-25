@@ -1,0 +1,434 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire || All Products </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+ <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+ <link rel="stylesheet" href="{% static 'css/product.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+<style type="text/css">
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .products{
+    margin: 20px;
+  }
+
+  .product-inner img{
+    height: 400px;
+    width: 100%;
+  }
+
+  @media (max-width: 991px) {
+    .product-inner img{
+    height: 300px;
+    width: 100%;
+  }
+  }
+
+  @media (max-width: 790px) {
+    .product-inner img{
+    height: 200px;
+    width: 100%;
+  }
+  .products{
+    margin: 10px;
+  }
+  }
+
+   @media (max-width: 540px) {
+    .product-inner img{
+    height: 400px;
+    width: 100%;
+  }
+  .products{
+    margin: 1px;
+  }
+  }
+
+  @media (max-width: 360px) {
+    .product-inner img{
+    height: 300px;
+    width: 100%;
+  }
+  .products{
+    margin: 1px;
+  }
+  }
+
+  .navigation {
+    width: 100%;
+}
+
+ svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+
+  .menu li a {
+    font-size: 1.7rem;
+  }
+  .toggle {
+    font-size: 2.5rem;
+}
+
+.cdp{
+  margin: 70px 0;
+}
+
+@media only screen and (max-width: 790px){
+.cart-icon {
+    font-size: 2rem;
+    position: absolute;
+    right: 5%;
+    top: -14px;
+}
+}
+
+@media only screen and (max-width: 990px){
+.cdp{
+  margin: 100px 0;
+}
+}
+
+.menu li a {
+    font-size: 2.2rem;
+}
+
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href={% url "shop:index" %}>Home</a></li>
+                        <li class="category-dropdown"><a href="#">Categories</a>
+                            <ul class="sub-category">
+                                {% for item in category %}
+                                <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="{% url "shop:cart" %}" style="position: relative;
+                          padding: 10px 10px;" >Cart<i class="fal fa-cart-plus cart"></i><span style=" position: absolute;
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span></a></li>
+                    
+                        {% if user.is_authenticated %}
+                          <!-- <li><a href="#">{{user.first_name}}</a></li> -->
+                          <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+                        {% else %}
+                  
+                          <li class="login-dropdown"><a href="#">Login</a>
+                              <ul class="sub-login">
+                                  <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+                              </ul>
+                          </li>
+                          <li class="register-dropdown"><a href="#">Register</a>
+                              <ul class="sub-register">
+                                  <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                  <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+                              </ul>
+                          </li>
+        
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <div class="cart-box">
+                        <!-- <a href="cart.html" class="cart-icon"><i class="fal fa-cart-plus"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: 20px;">
+            <li><a href={% url "shop:index" %}>Home</a></li>
+            <li class="new-category-dropdown"><a href="#">Categories<span class="fa fa-angle-down c-u-aero"></span>
+                    <span class="fa fa-angle-up c-d-aero"></span></a></a></li>
+            <ul class="new-sub-category">
+               {% for item in category %}
+              <li><a href={% url "shop:product" item.slug item.id %}>{{item.title}}</a></li>
+              {% endfor %}
+            </ul>
+            {% if user.is_authenticated %}
+              <!-- <li><a href="#">{{user.first_name}}</a></li> -->
+              <li><a href="{% url 'shop:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="new-register-dropdown"><a href="#">Register<span class="fa fa-angle-down r-u-aero"></span>
+                    <span class="fa fa-angle-up r-d-aero"></span></a></li>
+            <ul class="new-sub-register">
+                <li><a href="{% url 'shop:registration' %}">Customer</a></li>
+                                <li><a href="{% url 'shop:registration_sp' %}">Service Provider</a></li>
+            </ul>
+
+            <li class="new-login-dropdown"><a href="#">Login<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href="{% url 'shop:login' %}">Customer</a></li>
+                <li><a href="{% url 'shop:service_login_page' %}">Service Provider</a></li>
+            </ul>
+             {% endif %}
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h2 style="text-align: center;color: white;margin-top: 20px;">{{my_category.title}}</h2>
+</section>
+<div class="" style="margin-top: 20px;">
+  <!-- <div class="row" id="search">
+    <form id="search-form" action="" method="POST" enctype="multipart/form-data">
+      <div class="form-group col-xs-9">
+        <input class="form-control" type="text" placeholder="Search" />
+      </div>
+      <div class="form-group col-xs-3">
+        <button type="submit" class="btn btn-block btn-primary">Search</button>
+      </div>
+    </form>
+  </div> -->
+<!--   <div class="row" id="filter" style="margin-left: 20px;">
+    <form>
+      <div class="form-group col-12">
+        <select data-filter="make" class="filter-make filter form-control">
+          <option value="">Select City</option>
+          <option value="">Show All</option>
+        </select>
+      </div>
+
+    </form>
+  </div> -->
+  <div class="row products" id="firstProduct"></div>
+  <div class="row products" id="products">
+    
+  </div>
+</div>
+
+<div class="content_detail__pagination cdp" actpage="1">
+  <ul class="pagination" style="margin-left: 50%;transform: translate(-50%); color:#FF405E;">
+    {% if orders.has_previous %}
+       <li> <a class="page-item pagination-action" href="?page=1"  data-value="1"tabindex="-1" id="myTab">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i> </a></li>
+       <li> <a class="page-item pagination-action"id="myTab" tabindex="-1" data-value="{{ orders.previous_page_number }}" href="?page={{orders.previous_page_number}}" >
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+    {% for num in orders.paginator.page_range %}
+        {% if orders.number == num %}
+           <li> <span class="page-item pagination-number pagination-current" id="myTab" tabindex="-1" style="background-color: #FF405E; color:white;" data-value="{{ num }}" onclick="handleClick(this)" >{{ num }}</span></li>
+        {% elif num > orders.number|add:'-3' and num < orders.number|add:'3' %}
+          <li>  <a class="page-item pagination-number"id="myTab" href="?page={{num}}" tabindex="-1" style="color: black;" data-value="{{ num }}">{{ num }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if orders.has_next %}
+       <li> <a class="page-item pagination-action" id="myTab" href="?page={{orders.next_page_numbe}}"  tabindex="-1" data-value="{{ orders.next_page_number }}">
+            <i class="fa fa-angle-right"id="myTab" aria-hidden="true"></i>
+        </a></li>
+        <li><a class="page-item pagination-action"id="myTab" href="?page={{orders.paginator.num_pages}}"data-value="{{ orders.paginator.num_pages }}">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a></li>
+    {% endif %}
+  </ul>
+  <style type="text/css">
+  #myTab{
+    color: #FF405E;
+    font-size: 15px;
+    font-style: bold;
+  }
+</style>
+    </div>
+
+{% include 'footer.html' %}
+<!-- partial -->
+<!--   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+  <script  src="{% static 'script.js' %}"></script>
+
+<!--   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script> -->
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<!-- <script  src="{% static 'product.js' %}"></script> -->
+<script type="text/javascript">
+
+function pageit(pageNo){
+  let id = "{{id}}"
+  console.log(id)
+  let response = fetch(`/productsjson/${id}?page=${pageNo}`)
+                   .then(res => res.json())
+                   .then(r => {
+                    data = r
+console.log(r)
+var products = "",
+  makes = "",
+  models = "",
+  types = ""
+  firstProduct = "";
+for (var i = 0; i < data.length; i++) {
+  var make = data[i].make,
+    id = data[i].id,
+    slug = data[i].slug,
+    model = data[i].model,
+    type = data[i].type,
+    price = data[i].price,
+    rawPrice = price.replace("$",""),
+    rawPrice = parseInt(rawPrice.replace(",","")),
+    image = data[i].image;
+    has_priority = data[i].priority
+    if(has_priority === true){
+      firstProduct += "<div class='col-sm-4 product' data-make='" + make + "' data-model='" + model + "' data-type='" + type + "' data-price='" + rawPrice + "'><div class='product-inner text-center'><span class='badge'>Prior</span><a href='/productpage/"+slug+"/"+id+"'><img src='" + image + "'></a><br /><br />Name: " + model + "<br />Price: " + price +"</div></div>";
+    }
+  //create product cards
+  else{
+    products += "<div class='col-sm-4 product' data-make='" + make + "' data-model='" + model + "' data-type='" + type + "' data-price='" + rawPrice + "'><div class='product-inner text-center'><a href='/productpage/"+slug+"/"+id+"'><img src='" + image + "'></a><br /><br />Name: " + model + "<br />Price: " + price +"</div></div>";
+  }
+    
+  //create dropdown of makes
+  if (makes.indexOf("<option value='" + make + "'>" + make + "</option>") == -1) {
+    makes += "<option value='" + make + "'>" + make + "</option>";
+  }
+  
+  //create dropdown of models
+  if (models.indexOf("<option value='" + model+"'>" + model + "</option>") == -1) {
+    models += "<option value='" + model + "'>" + model + "</option>";
+  }
+  
+  //create dropdown of types
+  if (types.indexOf("<option value='" + type + "'>" + type + "</option>") == -1) {
+    types += "<option value='" + type + "'>" + type + "</option>";
+  }
+}
+
+$('#firstProduct').html(firstProduct)
+$("#products").html(products);
+$(".filter-make").append(makes);
+$(".filter-model").append(models);
+$(".filter-type").append(types);
+
+var filtersObject = {};
+
+//on filter change
+$(".filter").on("change",function() {
+  var filterName = $(this).data("filter"),
+    filterVal = $(this).val();
+  
+  if (filterVal == "") {
+    delete filtersObject[filterName];
+  } else {
+    filtersObject[filterName] = filterVal;
+  }
+  
+  var filters = "";
+  
+  for (var key in filtersObject) {
+      if (filtersObject.hasOwnProperty(key)) {
+      filters += "[data-"+key+"='"+filtersObject[key]+"']";
+    }
+  }
+  
+  if (filters == "") {
+    $(".product").show();
+  } else {
+    $(".product").hide();
+    $(".product").hide().filter(filters).show();
+  }
+});
+
+//on search form submit
+$("#search-form").submit(function(e) {
+  e.preventDefault();
+  var query = $("#search-form input").val().toLowerCase();
+
+  $(".product").hide();
+  $(".product").each(function() {
+    var make = $(this).data("make").toLowerCase(),
+      model = $(this).data("model").toLowerCase(),
+      type = $(this).data("type").toLowerCase();
+
+    if (make.indexOf(query) > -1 || model.indexOf(query) > -1 || type.indexOf(query) > -1) {
+      $(this).show();
+    }
+  });
+});
+
+
+
+/* 
+this javascript is only to change the "actpage" attribut on the .cdp div
+*/
+
+window.onload = function(){
+  var paginationPage = parseInt($('.cdp').attr('actpage'), 10);
+  $('.cdp_i').on('click', function(){
+    var go = $(this).attr('href').replace('#!', '');
+    if (go === '+1') {
+      paginationPage++;
+    } else if (go === '-1') {
+      paginationPage--;
+    }else{
+      paginationPage = parseInt(go, 10);
+    }
+    $('.cdp').attr('actpage', paginationPage);
+  });
+};
+})
+
+}
+let page_no = "{{currentPage}}"
+pageit(parseInt(page_no))
+
+
+function handleClick(e) {
+  console.log(e)
+  console.log(e.getAttribute('data-value'))
+  pageit(e.getAttribute('data-value'))
+}
+</script>
+
+</body>
+</html>

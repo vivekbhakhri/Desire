@@ -1,0 +1,515 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire || Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+      <script src="{% static 'cities.js' %}"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+   
+   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+<style type="text/css">
+  .btn.btn-primary.login{
+    background-color: #fe4a55;
+    color: white;
+    width: 80%;
+  }
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .btn.btn-primary.login:hover{
+    background-color: #100f15;
+    color: white;
+  }
+  .a{
+    color: #fe4a55;
+  }
+  .a:hover{
+    color: #100f15;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+
+  .close.is-hidden{
+    display: block;
+  }
+  .close{
+    display: none;
+  }
+  p{
+    font-size: 20px;
+  }
+  h3{
+    font-size: 2.5rem;
+  }
+   @media only screen and (max-width: 590px){
+      .brand {
+          top: -12px;
+          width: 150px;
+          height: auto;
+          margin-left: -65px;
+      }
+
+      [class*="tab-content-"] > section {
+    padding: 0;
+        }
+}
+.container.bank{
+    padding: 0;
+}
+.details{
+  margin-left: 85px;
+  margin-right: 85px;
+}
+@media only screen and (max-width: 590px){
+  .details{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+}
+
+.box{
+ border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: 10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                        <li><a href="#">Welcome! {{user.first_name}}</a></li>
+                        <li><a href={% url "shop:profile" %}>Profile</a></li>
+                        <li><a href={% url "shop:logout" %}>Logout</a></li>
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                     </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: 20px;">
+            <li><a href={% url "shop:profile" %}>Profile</a></li>
+                       <li><a href={% url "shop:logout" %}>Logout</a></li>
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h4 style="text-align: center;color: white;margin-top: 20px;">Profile</h4>
+</section>
+
+
+
+    <div class="main-content">
+        <!-- Parte izquierda del cv -->
+        <aside class="main-content__left">
+            <figure class="user-profile">
+                <img class="user-profile__bg" src="https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="fondo de pantalla">
+                <img class="user-profile__img" src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/user.png" >
+
+                 <!-- Sustituir fondo detras -->
+                <!-- <figcaption class="user-profile__info">
+                    <h1 class="user-profile__name">samuel domínguez juárez</h1> 
+                    <p class="user-profile__ocupation"><strong>diseñador web UI/UX</strong></p> 
+                    <p class="user-profile__tagline"><em>freelance disponible</em></p> 
+                </figcaption> -->
+            </figure>
+        </aside>
+
+        <!-- Parte derecha - contenido principal -->
+        <main class="main-content__right">
+            <input type="radio" name="tab" id="tab-1" class="tab-1 welcome" checked>
+            <input type="radio" name="tab" id="tab-2" class="tab-2 profile">
+            <input type="radio" name="tab" id="tab-3" class="tab-3 resume">
+            <input type="radio" name="tab" id="tab-4" class="tab-4 portfolio">
+            <input type="radio" name="tab" id="tab-5" class="tab-5 blog">
+            <input type="radio" name="tab" id="tab-6" class="tab-6 contact">
+
+            <nav class="navbar">
+                <ul class="navbar__menu" onclick="currentTab(event)" role="list">
+                    <li class="navbar__item" role="listitem">
+                        <label for="tab-1" class="navbar__link active" role="label">
+                            <span>profile</span>
+                            <i class="fas fa-user"></i>
+                        </label>
+                    </li>
+
+                  <!--   <li class="navbar__item" role="listitem">
+                        <label for="tab-3" class="navbar__link" role="label">
+                            <span>Bank Details</span>
+                            <i class="fas fa-briefcase"></i>
+                        </label>
+                    </li> -->
+
+                    <li class="navbar__item" role="listitem">
+                        <a href={% url "shop:addproduct" %}><label class="navbar__link" role="label">
+                            <span>Add Product</span>
+                            <i class="fas fa-file-alt"></i>
+                        </label></a>
+                    </li>
+                    <li class="navbar__item" role="listitem">
+                        <a href={% url "shop:serviceproduct" %}><label class="navbar__link" role="label">
+                            <span>My Products</span>
+                            <i class="fas fa-blog"></i>
+                        </label></a>
+                    </li>
+                    <li class="navbar__item" role="listitem">
+                        <a href={% url "shop:ordersreceived" %}><label class="navbar__link" role="label">
+                            <span >My Orders</span><span style=" 
+  top: -10px;right: -10px;padding: 5px 5px;border-radius: 50%;font-size: 15px;background: red;
+  color: white;">{{no_orders}}</span>
+                            <i class="navbar__link-icon fas fa-envelope"></i>
+                        </label></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="tab-content-1">
+                <section class="welcome">
+
+     <center>
+      <h1>Profile</h1>
+<section style="background-color: white;">
+
+    <div class="container bank">
+      {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                    <!--   <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="display: inherit;">
+                        <span aria-hidden="true">&times;</span>
+                      </button> -->
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+  <form class="col-lg-12 col-sm-12" style="padding: 60px 0px;" method="post">
+    {% csrf_token %}
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Name:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{user.first_name}}" name="name" readonly="">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Seller ID:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.unique_id}}" name="name" readonly="">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">E-Mail:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{user.email}}" name="name" readonly="">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Contact Number:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.contact_number}}" name="name" readonly="">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Alternate Contact Number:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.alt_contact_number}}" name="name" readonly="">
+    </div>
+    
+  </form>
+</div>      
+</section>
+</center>              
+{% if profile.saved %}
+  <center>
+<section style="background-color: white;">
+
+    <div class="container bank">
+  <form class="col-lg-12 col-sm-12" style="padding-bottom: 50px">
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Company Name:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.company_name}}" name="name" readonly="">
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Address:</label>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" value="{{profile.address1}}" name="name" readonly="">
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" value="{{profile.address2}}" name="name" readonly="">
+      
+    </div>
+    
+  </form>
+</div>      
+</section>
+</center>
+{% else %}
+
+ <center>
+<section style="background-color: white;">
+
+    <div class="container bank">
+  <form action="{% url "shop:profile" %}" method="post"class="col-lg-12 col-sm-12" style="padding-bottom: 50px">{% csrf_token %}
+    
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Company Name:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" placeholder="Enter Company name" name="cname" required="text">
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Address:</label>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Street Address 1" name="Address1" required="text">
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Street Address 2" name="Address2" required="text">
+      <!-- <input type="text" style="font-size: 20px;margin-bottom: 10px;text-transform: uppercase;" class="form-control" id="name" placeholder="Enter City" name="name"> -->
+      <select style="margin-bottom: 10px;font-size: 20px;" onchange="print_city('state', this.selectedIndex);" id="sts" name ="state" class="form-control" required></select>
+<select style="margin-bottom: 10px;font-size: 20px;" name="city"id ="state" class="form-control" required>
+  <option value="">Select City</option>
+</select>
+<script language="javascript">print_state("sts");</script>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Zip Code" name="zip" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary login col-lg-8 col-sm-10" style="font-size: 20px;">Submit</button><br><br>
+    
+  </form>
+</div>      
+</section>
+</center>
+
+{% endif %}
+
+                </section>
+            </div>
+
+            <!-- <div class="tab-content-2">
+                <section class="profile">
+                    <h3>Profile</h3>
+                    <p><b>Name: </b>abcdef</p>
+                    <p><b>E-Mail: </b>abcdef</p>
+                    <p><b>Phone Number: </b>abcdef</p>
+                    <p><b>Alternate Phone Number: </b>abcdef</p>
+                </section>
+            </div> -->
+
+            <div class="tab-content-3">
+                <section class="resume">
+                    <h3>Bank Details</h3>
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible mx-auto" role="alert">
+                    {% else %}
+                      <div class=" alert alert-{{message.tags}} alert-dismissible mx-auto" role="alert">
+                    {% endif %}
+                      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="display: inherit;">
+                        <span aria-hidden="true">&times;</span>
+                      </button> -->
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                   {% if profile.bank_details_saved %}
+<center>
+<section style="background-color: white;margin-top: 50px;">
+
+    <div class="container bank">
+  <form class="col-lg-12 col-sm-12" style="padding-bottom: 50px;">
+    
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Account Number:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.account_number}}" name="name" readonly="" >
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">IFSC Code:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.ifsc_code}}"  name="name" readonly="">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Account Holder Name:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.account_holder_name}}"  name="name" readonly="" >
+    </div>
+     <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Bank Name:</label>
+      <input type="text" style="font-size: 20px;" class="form-control" id="name" value="{{profile.bank_name}}"  name="name" readonly="" >
+    </div>
+    
+  </form>
+</div>      
+</section>
+</center>
+      {% else %}
+      <center>
+<section style="background-color: white;padding-bottom: 60px;">
+
+    <div class="container bank">
+  <form action={% url "shop:addbankdetails" %} method="post" class="col-lg-12 col-sm-12" style="padding: 60px 0px;">
+  {% csrf_token %}
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Account Details:</label>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Account Number" name="account_number" required>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter IFSC Code" name="ifsc" required>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Account Holder Name" name="account_name" required>
+      <input type="text" style="font-size: 20px;margin-bottom: 10px;" class="form-control" id="name" placeholder="Enter Bank Name" name="bank_name" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary login col-lg-8 col-sm-10" style="font-size: 20px;">Submit</button><br><br>
+    
+    <!-- <a href="#" style="" class="a col-lg-10 col-sm-12">Lost your password?</a>
+    <a href="#" style="" class="a col-lg-10 col-sm-12">New user? Register here...</a> -->
+  </form>
+</div>
+</section></center>
+{% endif %}
+
+
+
+                </section>
+            </div>
+
+            <div class="tab-content-4">
+                <section class="portfolio">
+                    <h3>Portfolio</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                </section>
+            </div>
+
+            <div class="tab-content-5">
+                <section class="blog">
+                    <h3>Blog</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                </section>
+            </div>
+
+            <div class="tab-content-6">
+                <section class="contact">
+                    <h3>Contact</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                    <br>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit nesciunt quam tenetur in fuga harum nostrum et
+                        cupiditate libero cum quia blanditiis inventore aut, commodi atque obcaecati possimus. Doloribus saepe mollitia vel
+                        a esse assumenda, facilis incidunt beatae ducimus quis ipsum magnam consequatur unde debitis deserunt animi aut
+                        excepturi error?
+                    </p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        
+        function currentTab(e) {
+            const el = document.querySelector('.active');
+            if (el !== null) {
+                el.classList.remove('active');
+            }
+            e.target.className = 'navbar__link active';
+        }
+
+    </script>
+
+{% include 'footer.html' %}
+<!-- <style type="text/css">
+
+#footer{
+   background-color: #100f15;
+   position: relative;
+   bottom: 0;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   left: 0;
+   right: 0;
+   overflow-x: hidden; 
+}
+
+</style> -->
+</body>
+</html>

@@ -1,0 +1,510 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html class="supernova">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=1" />
+
+<title>The Desire || Checkout</title>
+
+{% include "st.html"%}
+
+</head>
+
+<body>
+  {% if order_id %}
+  <div role="main" class="form-all">
+    <ul class="form-section page-section">
+      <li id="cid_1" class="form-input-wide" data-type="control_head">
+        <div class="form-header-group  header-large">
+          <div class="header-text httal htvam">
+            <h1 id="header_1" class="form-header" data-component="header">
+              Checkout Form
+            </h1>
+          </div>
+        </div>
+      </li>
+  <li class="form-line card-3col" data-type="control_paypalcomplete" id="id_19" data-payment="true">
+        <label class="form-label form-label-top" id="label_19" for="input_19"> My Products </label>
+        <div id="cid_19" class="form-input-wide" data-layout="full">
+          <div data-wrapper-react="true">
+            <div data-wrapper-react="true">
+              <div class="filter-container">
+              </div>
+              <input type="hidden" name="simple_fpc" data-payment_type="paypalcomplete" data-component="payment1" value="19" />
+              <input type="hidden" name="payment_total_checksum" id="payment_total_checksum" data-component="payment2" />
+              <div id="image-overlay" class="overlay-content" style="display:none">
+                <img id="current-image" />
+                <span class="lb-prev-button">
+                  prev
+                </span>
+                <span class="lb-next-button">
+                  next
+                </span>
+                <span class="lb-close-button">
+                  ( X )
+                </span>
+                <span class="image-overlay-product-container">
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample6a1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample8%20copya1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample9a1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                </span>
+              </div>
+              <div data-wrapper-react="true">
+                  {% for i in order %}
+                    <span class="form-product-item hover-product-item show_image show_option full_img new_ui" categories="non-categorized" pid="1001" style="display:block">
+                      <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                        <div class="p_image">
+                          <div class="image_area form-product-image-with-options">
+                            <img src={{i.item.image.url}} alt="">
+                            <div class="image_zoom">
+                              <!-- image -->
+                            </div>
+                          </div>
+                        </div>
+                        <div for="input_19_1001" class="form-product-container">
+                          <span data-wrapper-react="true">
+                            <div class="title_description">
+                              <span class="form-product-name" id="product-name-input_19_1001">
+                                {{i.item.title}}
+                                <!-- title -->
+                              </span>
+                              <span class="form-product-description" id="product-name-description-input_19_1001">
+                              </span>
+                            </div>
+                            <span class="form-product-details">
+                              <b>
+                                <span data-wrapper-react="true">
+                                  Rs.
+                                  <span id="input_19_1001_price">
+                                    {% if i.item.discount_price %}
+                                    {{i.item.discount_price}}
+                                    {% else %}
+                                    {{i.item.price}}
+                                    {% endif %}
+                                    <!-- price -->
+                                  </span>
+                                </span>
+                              </b>
+                            </span>
+                          </span>
+                          <span class="form-sub-label-container " style="vertical-align:top">
+                            <label class="form-sub-label" for="input_19_quantity_1001_0" style="min-height:13px" aria-hidden="false"> Quantity </label>
+                            <span class="select_cont">
+                              {{i.quantity}}
+                              <!-- quantity -->
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </span>
+                    <div class="p_item_separator">
+                    </div>
+                  {% endfor %}
+
+                <div class="payment_footer new_ui ">
+                  <div class="total_area">
+                    <div class="form-payment-total">
+                      <div id="sub_total-text" style="width:100%;padding-bottom:10px">
+                        Sub Total
+                      </div>
+                      <div class="form-payment-price" style="padding-bottom:10px">
+                        <span data-wrapper-react="true">
+                          
+                          <span id="payment_sub_total">
+                            Rs.{{sub_total}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="form-payment-total">
+                      <div id="sub_total-text" style="width:100%;padding-bottom:10px">
+                        Service Charges.
+                      </div>
+                      <div class="form-payment-price" style="padding-bottom:10px">
+                        <span data-wrapper-react="true">
+                          
+                          <span id="payment_sub_total">
+                            Rs.{{tax_amount}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="form-payment-total" style="padding-bottom:10px">
+                      <div id="total-text" style="align:right;width:100%;padding-bottom:10px">
+                        Total
+                      </div>
+                      <div class="form-payment-price">
+                        <span data-wrapper-react="true">
+                        
+                          <span id="payment_total">
+                            Rs.{{grand_total}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li style="text-align: center; margin-bottom: 20px; margin-left: 50%; margin-right: 50%">
+        
+              <form action={% url 'core:payment_status' %} method="POST">
+                {% csrf_token %}
+                <script    src="https://checkout.razorpay.com/v1/checkout.js"
+               data-key="rzp_test_gZUdaE6doY9IkN"
+               data-amount="{{ price }}"
+               data-currency="INR"
+               data-order_id="{{ order_id }}"
+               data-buttontext="Pay with Razorpay"
+               data-name="The Desire"
+               data-description="Online Payment"
+               data-image="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png"
+               data-prefill.name="{{ name }}"
+               data-prefill.email="{{ email }}"
+               data-prefill.contact="{{ phone }}"
+               data-theme.color="#fe4a55"></script>
+            <input type="hidden" custom="Hidden Element" name="hidden">
+        </form>
+      </li>
+    </ul>
+  </div>
+
+
+            
+      {% else %}
+<form class="jotform-form" action="{% url "shop:checkout" %}" method="post" name="form_202324421541441" id="202324421541441" accept-charset="utf-8" autocomplete="on">
+  {% csrf_token %}
+  <input type="hidden" name="formID" value="202324421541441" />
+  <input type="hidden" id="JWTContainer" value="" />
+  <input type="hidden" id="cardinalOrderNumber" value="" />
+  <div role="main" class="form-all">
+    <ul class="form-section page-section">
+      <li id="cid_1" class="form-input-wide" data-type="control_head">
+        <div class="form-header-group  header-large">
+          <div class="header-text httal htvam">
+            <h1 id="header_1" class="form-header" data-component="header">
+              Checkout Form
+            </h1>
+          </div>
+        </div>
+      </li>
+      <li class="form-line card-3col" data-type="control_paypalcomplete" id="id_19" data-payment="true">
+        <label class="form-label form-label-top" id="label_19" for="input_19"> My Products </label>
+        <div id="cid_19" class="form-input-wide" data-layout="full">
+          <div data-wrapper-react="true">
+            <div data-wrapper-react="true">
+              <div class="filter-container">
+              </div>
+              <input type="hidden" name="simple_fpc" data-payment_type="paypalcomplete" data-component="payment1" value="19" />
+              <input type="hidden" name="payment_total_checksum" id="payment_total_checksum" data-component="payment2" />
+              <div id="image-overlay" class="overlay-content" style="display:none">
+                <img id="current-image" />
+                <span class="lb-prev-button">
+                  prev
+                </span>
+                <span class="lb-next-button">
+                  next
+                </span>
+                <span class="lb-close-button">
+                  ( X )
+                </span>
+                <span class="image-overlay-product-container">
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample6a1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample8%20copya1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                  <ul class="form-overlay-item" hasicon="false" hasimages="true" iconvalue="">
+                    <li class="image-overlay-image">
+                      <img src="files.jotform.com/jufs/EdwardWrighton/form_files/sample9a1a0.jpg?nc=1" />
+                    </li>
+                  </ul>
+                </span>
+              </div>
+              <div data-wrapper-react="true">
+                  {% for i in order %}
+                    <span class="form-product-item hover-product-item show_image show_option full_img new_ui" categories="non-categorized" pid="1001" style="display:block">
+                      <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                        <div class="p_image">
+                          <div class="image_area form-product-image-with-options">
+                            <img src={{i.item.image.url}} alt="">
+                            <div class="image_zoom">
+                              <!-- image -->
+                            </div>
+                          </div>
+                        </div>
+                        <div for="input_19_1001" class="form-product-container">
+                          <span data-wrapper-react="true">
+                            <div class="title_description">
+                              <span class="form-product-name" id="product-name-input_19_1001">
+                                {{i.item.title}}
+                                <!-- title -->
+                              </span>
+                              <span class="form-product-description" id="product-name-description-input_19_1001">
+                              </span>
+                            </div>
+                            <span class="form-product-details">
+                              <b>
+                                <span data-wrapper-react="true">
+                                  Rs.
+                                  <span id="input_19_1001_price">
+                                    {% if i.item.discount_price %}
+                                    {{i.item.discount_price}}
+                                    {% else %}
+                                    {{i.item.price}}
+                                    {% endif %}
+                                    <!-- price -->
+                                  </span>
+                                </span>
+                              </b>
+                            </span>
+                          </span>
+                          <span class="form-sub-label-container " style="vertical-align:top">
+                            <label class="form-sub-label" for="input_19_quantity_1001_0" style="min-height:13px" aria-hidden="false"> Quantity </label>
+                            <span class="select_cont">
+                              {{i.quantity}}
+                              <!-- quantity -->
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </span>
+                    <div class="p_item_separator">
+                    </div>
+                  {% endfor %}
+
+                <div class="payment_footer new_ui ">
+                  <div class="total_area">
+                    <div class="form-payment-total">
+                      <div id="sub_total-text" style="width:100%;padding-bottom:10px">
+                        Sub Total
+                      </div>
+                      <div class="form-payment-price" style="padding-bottom:10px">
+                        <span data-wrapper-react="true">
+                          
+                          <span id="payment_sub_total">
+                            Rs.{{sub_total}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="form-payment-total">
+                      <div id="sub_total-text" style="width:100%;padding-bottom:10px">
+                        Service Charges
+                      </div>
+                      <div class="form-payment-price" style="padding-bottom:10px">
+                        <span data-wrapper-react="true">
+                          
+                          <span id="payment_sub_total">
+                            Rs.{{tax_amount}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="form-payment-total" style="padding-bottom:10px">
+                      <div id="total-text" style="align:right;width:100%;padding-bottom:10px">
+                        Total
+                      </div>
+                      <div class="form-payment-price">
+                        <span data-wrapper-react="true">
+                        
+                          <span id="payment_total">
+                            Rs.{{grand_total}}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      
+      <li class="form-line" data-type="control_fullname" id="id_2">
+        <label class="form-label form-label-top" id="label_2" for="first_2"> Full Name </label>
+        <div id="cid_2" class="form-input-wide" data-layout="full">
+          <div data-wrapper-react="true">
+            <span class="form-sub-label-container " style="vertical-align:top" data-input-type="first">
+              <input type="text" id="first_2" name="q2_fullName2[first]" class="form-textbox" size="10" value="" data-component="first" aria-labelledby="label_2 sublabel_2_first" required="textarea" />
+              <label class="form-sub-label" for="first_2" id="sublabel_2_first" style="min-height:13px" aria-hidden="false"> First Name </label>
+            </span>
+            <span class="form-sub-label-container " style="vertical-align:top" data-input-type="last">
+              <input type="text" id="last_2" name="q2_fullName2[last]" class="form-textbox" size="15" value="" data-component="last" aria-labelledby="label_2 sublabel_2_last" required="textarea"/>
+              <label class="form-sub-label" for="last_2" id="sublabel_2_last" style="min-height:13px" aria-hidden="false"> Last Name </label>
+            </span>
+          </div>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_email" id="id_3">
+        <label class="form-label form-label-top" id="label_3" for="input_3"> E-mail </label>
+        <div id="cid_3" class="form-input-wide" data-layout="half">
+          <span class="form-sub-label-container " style="vertical-align:top">
+            <input type="email" id="input_3" name="q3_email3" class="form-textbox validate[Email]" style="width:310px" size="310" value="" placeholder="ex: myname@example.com" data-component="email" aria-labelledby="label_3 sublabel_input_3" required="email" />
+            <label class="form-sub-label" for="input_3" id="sublabel_input_3" style="min-height:13px" aria-hidden="false"> example@example.com </label>
+          </span>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_phone" id="id_5">
+        <label class="form-label form-label-top" id="label_5" for="input_5_full"> Contact Number </label>
+        <div id="cid_5" class="form-input-wide" data-layout="half">
+          <span class="form-sub-label-container " style="vertical-align:top">
+            <input type="tel" id="input_5_full" name="q5_contactNumber[full]" data-type="mask-number" class="mask-phone-number form-textbox validate[Fill Mask]" style="width:310px" data-masked="true" value="" placeholder="(000) 000-0000" data-component="phone" aria-labelledby="label_5" required="phone" />
+            <label class="form-sub-label" for="input_5_full" id="sublabel_5_masked" style="min-height:13px" aria-hidden="false">  </label>
+          </span>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_address" id="id_4">
+        <label class="form-label form-label-top" id="label_4" for="input_4_addr_line1"> Billing Address </label>
+        <div id="cid_4" class="form-input-wide" data-layout="full">
+          <div summary="" class="form-address-table jsTest-addressField">
+            <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
+              <span class="form-address-line form-address-street-line jsTest-address-lineField">
+                <span class="form-sub-label-container " style="vertical-align:top">
+                  <input type="text" id="input_4_addr_line1" name="q4_billingAddress[addr_line1]" class="form-textbox form-address-line" value="" data-component="address_line_1" aria-labelledby="label_4 sublabel_4_addr_line1" required="" />
+                  <label class="form-sub-label" for="input_4_addr_line1" id="sublabel_4_addr_line1" style="min-height:13px" aria-hidden="false"> Street Address </label>
+                </span>
+              </span>
+            </div>
+            <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
+              <span class="form-address-line form-address-street-line jsTest-address-lineField">
+                <span class="form-sub-label-container " style="vertical-align:top">
+                  <input type="text" id="input_4_addr_line2" name="q4_billingAddress[addr_line2]" class="form-textbox form-address-line" value="" data-component="address_line_2" aria-labelledby="label_4 sublabel_4_addr_line2" required="textarea"/>
+                  <label class="form-sub-label" for="input_4_addr_line2" id="sublabel_4_addr_line2" style="min-height:13px" aria-hidden="false"> Street Address Line 2 </label>
+                </span>
+              </span>
+            </div>
+            <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
+              <span class="form-address-line form-address-city-line jsTest-address-lineField ">
+                <span class="form-sub-label-container " style="vertical-align:top">
+                  <input type="text" id="input_4_city" name="q4_billingAddress[city]" class="form-textbox form-address-city" value="" data-component="city" aria-labelledby="label_4 sublabel_4_city" required="" />
+                  <label class="form-sub-label" for="input_4_city" id="sublabel_4_city" style="min-height:13px" aria-hidden="false"> City </label>
+                </span>
+              </span>
+              <span class="form-address-line form-address-state-line jsTest-address-lineField ">
+                <span class="form-sub-label-container " style="vertical-align:top">
+                  <input type="text" id="input_4_state" name="q4_billingAddress[state]" class="form-textbox form-address-state" value="" data-component="state" aria-labelledby="label_4 sublabel_4_state" required="" />
+                  <label class="form-sub-label" for="input_4_state" id="sublabel_4_state" style="min-height:13px" aria-hidden="false"> State / Province </label>
+                </span>
+              </span>
+            </div>
+            <div class="form-address-line-wrapper jsTest-address-line-wrapperField">
+              <span class="form-address-line form-address-zip-line jsTest-address-lineField ">
+                <span class="form-sub-label-container " style="vertical-align:top">
+                  <input type="text" id="input_4_postal" name="q4_billingAddress[postal]" class="form-textbox form-address-postal" value="" data-component="zip" aria-labelledby="label_4 sublabel_4_postal" required="" />
+                  <label class="form-sub-label" for="input_4_postal" id="sublabel_4_postal" style="min-height:13px" aria-hidden="false"> Postal / Zip Code </label>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+
+
+      <li class="form-line form-field-hidden" style="display:none;" data-type="control_fullname" id="id_11">
+        <label class="form-label form-label-top" id="label_11" for="first_11"> Recipient's Full Name </label>
+        <div id="cid_11" class="form-input-wide" data-layout="full">
+          <div data-wrapper-react="true">
+            <span class="form-sub-label-container " style="vertical-align:top" data-input-type="first">
+              <input type="text" id="first_11" name="q11_recipientsFull[first]" class="form-textbox" size="10" value="" data-component="first" aria-labelledby="label_11 sublabel_11_first" />
+              <label class="form-sub-label" for="first_11" id="sublabel_11_first" style="min-height:13px" aria-hidden="false"> First Name </label>
+            </span>
+            <span class="form-sub-label-container " style="vertical-align:top" data-input-type="last">
+              <input type="text" id="last_11" name="q11_recipientsFull[last]" class="form-textbox" size="15" value="" data-component="last" aria-labelledby="label_11 sublabel_11_last" />
+              <label class="form-sub-label" for="last_11" id="sublabel_11_last" style="min-height:13px" aria-hidden="false"> Last Name </label>
+            </span>
+          </div>
+        </div>
+      </li>
+      <li class="form-line form-field-hidden" style="display:none;" data-type="control_textarea" id="id_18">
+        <label class="form-label form-label-top form-label-auto" id="label_18" for="input_18"> Gift Message </label>
+        <div id="cid_18" class="form-input-wide" data-layout="full">
+          <textarea id="input_18" class="form-textarea" name="q18_giftMessage" style="width:648px;height:163px" data-component="textarea" aria-labelledby="label_18"></textarea>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_textarea" id="id_14">
+        <label class="form-label form-label-top" id="label_14" for="input_14"> Special Instructions </label>
+        <div id="cid_14" class="form-input-wide" data-layout="full">
+          <textarea id="input_14" class="form-textarea" name="q14_specialInstructions" style="width:648px;height:163px" data-component="textarea" aria-labelledby="label_14" placeholder="Mention if you have any special requirements, delivery free time etc...."></textarea>
+        </div>
+ 
+      </li>
+      <style type="text/css">
+        #id_payment_option{
+          list-style: none;
+        }
+      </style>
+<li>
+<!-- <label class="form-label form-label-top" id="label_14" for="input_14">Payment Methods: - </label>
+<label class="container">One
+  <input type="radio" checked="checked" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Two
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Three
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Four
+  <input type="radio" name="radio">
+  <span class="checkmark"></span>
+</label> -->
+{{form.as_p}}
+</li>
+      <li class="form-line" data-type="control_button" id="id_13">
+        <div id="cid_13" class="form-input-wide" data-layout="full">
+          <div data-align="center" class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField">
+            <button id="input_13" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
+              Submit Order
+            </button>
+          </div>
+        </div>
+      </li>
+      
+      <li style="display:none">
+        Should be Empty:
+        <input type="text" name="website" value="" />
+      </li>
+    </ul>
+  </div>
+
+  <input type="hidden" id="simple_spc" name="simple_spc" value="202324421541441" />
+
+  <div class="formFooter-heightMask">
+  </div>
+
+</form>
+{% endif %}</body>
+</html>

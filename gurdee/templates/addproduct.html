@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>The Desire || AddProductform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+   
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<!-- 
+<link href='https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' rel='stylesheet' type='text/css'> -->
+ <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'><link rel="stylesheet" href="{% static 'css/texteditor.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ECART.css' %}">
+  <script src="{% static 'cities.js' %}"></script>
+
+ <link rel="stylesheet" href="{% static 'css/singleupload.css' %}">
+ <link rel="stylesheet" href="{% static 'css/multiupload.css' %}">
+
+<style type="text/css">
+  .btn.btn-primary.login{
+    background-color: #fe4a55;
+    color: white;
+    width: 80%;
+  }
+
+  html, body{
+    overflow-x: hidden;
+  }
+
+  .btn.btn-primary.login:hover{
+    background-color: #100f15;
+    color: white;
+  }
+  .a{
+    color: #fe4a55;
+  }
+  .a:hover{
+    color: #100f15;
+  }
+
+  svg{
+        background-color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  .close.is-hidden{
+    display: block;
+  }
+  .fa.fa-times.close{
+    display: none;
+  }
+  @media only screen and (max-width: 590px){
+      .brand {
+          top: -12px;
+          width: 150px;
+          height: auto;
+          margin-left: -65px;
+      }
+}
+.form{
+  padding: 60px 60px;
+}
+ @media only screen and (max-width: 590px){
+  .form{
+  padding: 60px 0px;
+}
+ }
+ .social{
+  font-size: 16px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+</style>
+{{ form.media }}
+</head>
+<body>
+
+<header>
+        <!-- navigation starts -->
+        <nav class="navigation">
+            <div class="nav-container inner flex">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="logo">
+                </div>
+                <div class="menu-box">
+                    <ul class="menu flex">
+                      <li><a href="{% url "shop:profile" %}">Profile</a></li>
+                        <li class="login-dropdown"><a href="#">Products</a>
+                            <ul class="sub-login">
+                                <li><a href="{% url "shop:addproduct" %}">Add Product</a></li>
+                        <li><a href="{% url "shop:serviceproduct" %}">My Products</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="{% url "shop:ordersreceived" %}">Orders Received</a></li>
+                   <li><a href="{% url "shop:logout" %}">Logout</a></li>
+                    </ul>
+                </div>
+
+                <div class="mobile-nav">
+                    <div class="toggle-box">
+                        <button class="fa fa-bars toggle icon"></button>
+                    </div>
+                    <div class="brand-box">
+                        <a class="brand"><img src="https://raw.githubusercontent.com/Bikassharma2404/vendor/master/logo.png" alt="logo" class="brand"></a>
+                    </div>
+                    <!-- <div class="cart-box">
+                        <a href="ECART.html" class="cart-icon"><i class="fal fa-cart-plus"></i></a>
+                    </div> -->
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <!-- /// header ends //// -->
+
+    <div class="new-menu-box" style="width: 100%;">
+        <ul class="new-menu" style="margin-left: -20px;">
+            <li><a href="/profile">Profile</a></li>
+          <li class="new-login-dropdown"><a href="#">Products<span class="fa fa-angle-down l-u-aero"></span>
+                    <span class="fa fa-angle-up l-d-aero"></span></a></a></li>
+            <ul class="new-sub-login">
+                <li><a href="/addproduct">Add Product</a></li>
+                <li><a href="/serviceproduct">My Products</a></li>
+            </ul>
+            <li><a href="/ordersreceived">Orders Received</a></li>
+                              <li><a href="/logout">Logout</a></li>
+        </ul>
+        <span class="fa fa-times close" style="color: white;opacity: 1;font-size: 1.7rem;"></span>
+    </div>
+
+<section style="height: 80px;width: 100%;background-color: #100f15;display: flex;justify-content: center;text-align: center;text-align: center;">
+  <h4 style="text-align: center;color: white;margin-top: 20px;">Add Your Product</h4>
+</section>
+<center>
+<section style="background-color: white;padding-top: 60px;padding-bottom: 60px;margin-bottom: 50px;">
+
+    <div class="container">
+  <form action={% url "shop:addproduct" %} method="post" class="col-lg-8 col-sm-12 form" style="box-shadow: 0px 0px 10px 6px #cecbd2;" enctype="multipart/form-data">
+    {% csrf_token %}
+ <h2 style="font-weight: bold;">Seller ID: <b>S</b>{{request.user.id}}</h2>
+ <h2>Entries Remaining: {{profile.entries_remaining}} </h2>
+
+<!--     <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Name:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter your Name"required=""name="name">
+    </div> -->
+    
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Upload Service Image:</label>
+      <input style="width: 100%;" type='file' required="" multiple accept="image/*" onchange="readURL(this);" name="upload_image"/>
+      <img id="blah" src="http://placehold.it/180" alt="your image" />
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Service Name:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Service name" required="" name="service_name">
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Brand Name:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Brand name" required="" name="brand_name">
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">SEO:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter SEO" required="" name="seo">
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Category:</label>
+      <select name="category" class="form-control">
+        <option value=0>Select A Category</option>
+        {% for item in category %}
+        <option value={{item.id}}>{{item.title}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Price:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Price" required="" name="price">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Discounted Price:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Discounted Price" name="Discount_price">
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Stock Number:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Stock Number:"required="" name="stock_number">
+    </div>
+    <<!-- div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Availability:</label>
+      <input type="text" style="font-size: 20px;padding: 20px;" class="form-control" id="name" placeholder="Enter Availability:" name="name">
+    </div> -->
+    <div class="form-group col-lg-10 col-sm-12">
+      <label for="name" style="font-size: 20px;font-weight: bold;float: left;">Location of Service:</label>
+    </div>
+
+ <div class="form-group col-lg-10 col-sm-12">
+    <select style="margin-bottom: 10px;" onchange="print_city('state', this.selectedIndex);" id="sts" name ="state" class="form-control" required></select>
+<select id ="state" class="form-control" required name="city"><option value="">Select City</option></select>
+<script language="javascript">print_state("sts");</script>
+</div>
+<style type="text/css">
+  label {
+    font-size: 20px;font-weight: bold;
+  }
+</style>
+<div class="form-group col-lg-10 col-sm-12" style="text-align: left;">
+    {{form}}
+  </div>
+  <br>
+
+<div class="form-group col-lg-11 col-sm-12" style="padding-left: 20px;">
+      <label class="col-12" for="occ" style="font-size: 20px;font-weight: bold;text-align: left;">Extra image/video/audio for services:</label>
+      <label class="col-12" style="font-size: 18px;text-align: left;">
+            <span style='color:navy;font-weight:bold;'>Attachment Instructions :</span>
+        </label>
+        <ul>
+            <li style="text-align: left;">
+                Allowed only files with extension (jpg, png, gif, mp4, mp3)
+            </li>
+            <li style="text-align: left;">
+                Maximum number of allowed files 4 with 20 Mb for each
+            </li>
+            <li style="text-align: left;">
+                you can select files from different folders
+            </li>
+        </ul>
+      <span class="btn btn-success fileinput-button">
+            <span style="text-align: left;float: left;">Upload File</span>
+            <input type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif, video/mp4, audio/mp3"><br />
+        </span>
+    </div>
+    <div class="form-group col-lg-10 col-sm-12">
+        <output id="Filelist"></output>
+    </div><br>
+    
+
+    <button type="submit" class="btn btn-primary login col-lg-8 col-sm-10" style="font-size: 20px;">Add product</button><br><br>
+    
+    <!-- <a href="#" style="" class="a col-lg-10 col-sm-12">Lost your password?</a>
+    <a href="#" style="" class="a col-lg-10 col-sm-12">New user? Register here...</a> -->
+  </form>
+</div>
+</section></center>
+
+{% include 'footer.html' %}
+
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+     <script  src="{% static 'texteditor.js' %}"></script>
+
+     <script  src="{% static 'singleupload.js' %}"></script>
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+   </script><script  src="{% static 'multiupload.js' %}"></script>
+</body>
+</html>
