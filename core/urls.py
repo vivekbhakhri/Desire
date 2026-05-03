@@ -1,48 +1,89 @@
+"""URL configuration for the `core` app.
+
+Grouped by domain for readability. The `app_name` stays as ``"shop"`` because
+every reverse lookup in templates and views uses the ``shop:`` prefix.
+"""
 from django.urls import path
-from .views import welcome_page,addproduct_page,cart_page,changepassword_page,confirpasswordmessage_page,checkout_page,customerregistrtion_page,forgotpassword_page,forgotpasswordmessage_page,customer_login_page,myorders_page,ordersreceived_page,product_page,productpage_page,profile_page,registration_page,serviceproduct_page,servicesingleproduct_page,subscription_page,testimonials_page,updateproduct_page,registration_sp_page, user_logout_page, service_login_page, product_page_json, addItemToCart, removeFromCart, addbankdetails, deleteItem, deleteAttachment, payment_status, addcomment, accept_order, decline_order, delivered_order, buySubcription, subcription_payment_status, tempView, removeSingleItem, addMsg
 
+from . import views
 
+app_name = "shop"
 
-urlpatterns = [
-    path("", welcome_page, name="index"),
-    path("addproduct", addproduct_page, name="addproduct"),
-    path("cart", cart_page, name="cart"),
-    path("changepassword", changepassword_page , name="changepassword"),
-    path("confirmpasswordmessage", confirpasswordmessage_page , name="confirpasswordmessage"),
-    path("checkout", checkout_page, name="checkout"),
-    # path("customerregistration", customerregistrtion_page , name="customerregistration"),
-    path("forgotpassword", forgotpassword_page , name="forgotpassword"),
-    path("forgotpasswordmessage", forgotpasswordmessage_page , name="forgotpasswordmessage"),
-    path("login", customer_login_page , name="login"),
-    path("service-provider-login", service_login_page , name="service_login_page"),
-    path("logout", user_logout_page , name="logout"),
-    path("myorders", myorders_page , name="myorders"),
-    path("ordersreceived", ordersreceived_page , name="ordersreceived"),
-    path("product/<slug>/<id>", product_page , name="product"),
-    path("productpage/<slug>/<id>", productpage_page , name="productpage"),
-    path("profile", profile_page , name="profile"),
-    path("registration", registration_page, name="registration"),
-    path("registration_sp", registration_sp_page, name="registration_sp"),
-    path("serviceproduct", serviceproduct_page, name="serviceproduct"),
-    path("servicesingleproduct/<slug>/<id>", servicesingleproduct_page, name="servicesingleproduct"),
-    path("subscription", subscription_page, name="subscription"),
-    path("testimonials", testimonials_page, name="testimonials"),
-    path("updateproduct/<slug>/<id>", updateproduct_page, name="updateproduct"),
-    path("productsjson/<id>", product_page_json, name="get_json"),
-    path("add-to-cart/<id>/<qt>/", addItemToCart, name="addItemToCart"),
-    path("remove-from-cart/<id>/", removeFromCart, name="removeFromCart"),
-    path("addbankdetails", addbankdetails, name="addbankdetails"),
-    path("deleteItem/<id>/",deleteItem, name="deleteItem" ),
-    path("deleteAttachment/<id>/<mainid>/", deleteAttachment, name="deleteAttachment"),
-    path('payment_status/', payment_status, name = 'payment_status'),
-    path('addcomment/<int:id>/', addcomment, name='addcomment'),
-    path('accept-order/<int:id>/', accept_order, name='accept_order'),
-    path('decline-order/<int:id>/', decline_order, name='decline_order'),
-    path('delivered-order/<int:id>/', delivered_order, name='delivered_order'),
-    path('buySubcription/<int:id>/', buySubcription, name="buySubcription"),
-    path('subcription_payment_status/<int:id>/', subcription_payment_status, name="subcription_payment_status"),
-    path("tempView/<int:id>/", tempView, name="tempView"),
-    path('removeSingle/<int:id>', removeSingleItem, name="removeSingleItem"),
-    path("addMsg/<int:id>/", addMsg, name="addmsg")
+# ---------------------------------------------------------------------------
+# Storefront (browsing, cart, checkout, comments)
+# ---------------------------------------------------------------------------
+storefront_patterns = [
+    path("", views.welcome_page, name="index"),
+    path("cart", views.cart_page, name="cart"),
+    path("checkout", views.checkout_page, name="checkout"),
+    path("payment_status/", views.payment_status, name="payment_status"),
+    path("myorders", views.myorders_page, name="myorders"),
+    path("product/<slug>/<id>", views.product_page, name="product"),
+    path("productpage/<slug>/<id>", views.productpage_page, name="productpage"),
+    path("productsjson/<id>", views.product_page_json, name="get_json"),
+    path("add-to-cart/<id>/<qt>/", views.addItemToCart, name="addItemToCart"),
+    path("remove-from-cart/<id>/", views.removeFromCart, name="removeFromCart"),
+    path("removeSingle/<int:id>", views.removeSingleItem, name="removeSingleItem"),
+    path("addcomment/<int:id>/", views.addcomment, name="addcomment"),
+    path("testimonials", views.testimonials_page, name="testimonials"),
 ]
-app_name = 'shop'
+
+# ---------------------------------------------------------------------------
+# Auth + static account pages
+# ---------------------------------------------------------------------------
+auth_patterns = [
+    path("login", views.customer_login_page, name="login"),
+    path("service-provider-login", views.service_login_page, name="service_login_page"),
+    path("logout", views.user_logout_page, name="logout"),
+    path("registration", views.registration_page, name="registration"),
+    path("registration_sp", views.registration_sp_page, name="registration_sp"),
+    path("changepassword", views.changepassword_page, name="changepassword"),
+    path(
+        "confirmpasswordmessage",
+        views.confirpasswordmessage_page,
+        name="confirpasswordmessage",
+    ),
+    path("forgotpassword", views.forgotpassword_page, name="forgotpassword"),
+    path(
+        "forgotpasswordmessage",
+        views.forgotpasswordmessage_page,
+        name="forgotpasswordmessage",
+    ),
+]
+
+# ---------------------------------------------------------------------------
+# Seller dashboard (products, profile, orders received, subscriptions)
+# ---------------------------------------------------------------------------
+seller_patterns = [
+    path("profile", views.profile_page, name="profile"),
+    path("addbankdetails", views.addbankdetails, name="addbankdetails"),
+    path("addproduct", views.addproduct_page, name="addproduct"),
+    path("updateproduct/<slug>/<id>", views.updateproduct_page, name="updateproduct"),
+    path("deleteItem/<id>/", views.deleteItem, name="deleteItem"),
+    path(
+        "deleteAttachment/<id>/<mainid>/",
+        views.deleteAttachment,
+        name="deleteAttachment",
+    ),
+    path("serviceproduct", views.serviceproduct_page, name="serviceproduct"),
+    path(
+        "servicesingleproduct/<slug>/<id>",
+        views.servicesingleproduct_page,
+        name="servicesingleproduct",
+    ),
+    path("ordersreceived", views.ordersreceived_page, name="ordersreceived"),
+    path("accept-order/<int:id>/", views.accept_order, name="accept_order"),
+    path("decline-order/<int:id>/", views.decline_order, name="decline_order"),
+    path("delivered-order/<int:id>/", views.delivered_order, name="delivered_order"),
+    path("addMsg/<int:id>/", views.addMsg, name="addmsg"),
+    path("subscription", views.subscription_page, name="subscription"),
+    path("buySubcription/<int:id>/", views.buySubcription, name="buySubcription"),
+    path(
+        "subcription_payment_status/<int:id>/",
+        views.subcription_payment_status,
+        name="subcription_payment_status",
+    ),
+    path("tempView/<int:id>/", views.tempView, name="tempView"),
+]
+
+urlpatterns = storefront_patterns + auth_patterns + seller_patterns

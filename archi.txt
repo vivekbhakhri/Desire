@@ -1,0 +1,318 @@
+================================================================================
+DESIRE — APPLICATION ARCHITECTURE
+================================================================================
+
+Desire is a multi-vendor e-commerce site built on Django. Sellers ("service
+providers") subscribe to a plan, list products, and fulfill orders. Customers
+browse the catalogue, add to cart, check out via Razorpay/InstaMojo/COD, and
+review what they buy.
+
+This document describes how the source tree is laid out, why it is organized
+that way, and the conventions every contributor should follow.
+
+
+--------------------------------------------------------------------------------
+1. TOP-LEVEL LAYOUT
+--------------------------------------------------------------------------------
+
+    Desire/
+    ├── manage.py                ← Django entrypoint
+    ├── requirements.txt         ← runtime dependencies (Django 5, Pillow, etc.)
+    ├── .env.example             ← template for local secrets/config
+    ├── .gitignore
+    ├── README.md
+    ├── archi.txt                ← this document
+    │
+    ├── demo/                    ← Django project (settings + URL root + WSGI)
+    │   ├── settings.py          ← env-driven base settings (dev defaults)
+    │   ├── azure.py             ← production overrides for Azure App Service
+    │   ├── urls.py              ← root URLConf
+    │   └── wsgi.py
+    │
+    ├── core/                    ← the single Django app, layered internally
+    │   ├── apps.py
+    │   ├── admin.py             ← Django admin registrations
+    │   ├── urls.py              ← grouped URL patterns, app_name = "shop"
+    │   ├── forms.py             ← all forms (auth, file upload, model forms)
+    │   ├── validators.py
+    │   ├── constants.py         ← choice tuples + magic strings
+    │   ├── models/              ← persistence layer (split by bounded context)
+    │   ├── services/            ← business logic (no HTTP, no templates)
+    │   ├── views/               ← thin controllers, grouped by audience
+    │   ├── templatetags/
+    │   ├── management/commands/ ← makesuper, rename
+    │   └── migrations/          ← 45 sealed migrations — DO NOT REWRITE
+    │
+    ├── templates/               ← server-rendered HTML
+    ├── static_in_env/           ← static assets (collected to static_root/)
+    ├── media_root/              ← user uploads
+    ├── db.sqlite3               ← dev database (overridden in production)
+    └── bin/                     ← Azure deployment helper scripts
+
+
+--------------------------------------------------------------------------------
+2. LAYERS INSIDE `core/`
+--------------------------------------------------------------------------------
+
+The app is organized in three concentric layers. Dependencies only point inward
+— views import from services and models; services import from models; models
+do not import from anything above.
+
+    ┌───────────────────────────────────────────────────────────────┐
+    │ views/   ← Django request handlers. Parse input, call         │
+    │            services, render templates. No business rules.     │
+    │     │                                                         │
+    │     ▼                                                         │
+    │ services/  ← Pure business logic. Reusable, testable in       │
+    │              isolation. No `request`, no `render`.            │
+    │     │                                                         │
+    │     ▼                                                         │
+    │ models/    ← Persistence. Schema definitions and trivial      │
+    │              instance helpers (str, get_absolute_url,         │
+    │              aggregates).                                     │
+    └───────────────────────────────────────────────────────────────┘
+
+This layering is the rule that keeps the codebase scalable. When you find a
+piece of logic in a view that has nothing to do with HTTP — it belongs in a
+service. When you find SQL or aggregates living inside a service — push them
+down into a model classmethod or a queryset.
+
+
+--------------------------------------------------------------------------------
+3. MODELS LAYER (`core/models/`)
+--------------------------------------------------------------------------------
+
+Split by domain so files stay short and discoverable. Every class is re-exported
+from `core.models.__init__` so `from core.models import X` keeps working from
+anywhere (including the historical migrations).
+
+    accounts.py    Profile, Subcription, SubscriptionPayment
+        ─ User profile, seller subscription plans, plan-purchase log.
+
+    catalog.py     HomeImage, Slide, Category, Tax, Item, Attachment
+        ─ Anything a customer sees on a product page.
+
+    orders.py      OrderItem, BillingAddress, Payment, Coupon
+        ─ Cart and checkout. An OrderItem with `ordered=False` is a cart row.
+
+    content.py     Comment, Contact, Testimonial, Seo
+        ─ User-generated content.
+
+Notes
+-----
+* The model name `Subcription` is a misspelling that predates this refactor.
+  It is kept verbatim because renaming it would invalidate 45 existing
+  migrations and the production data. Same for `categoryId`, `productId`,
+  `brandName`, `getTaxAmount`, `totalPrice`. New fields should follow snake_case.
+* `Comment.status`, `Item.label`, `Tax.ValueType`, `Profile` plan flags etc.
+  all read their choice tuples from `core/constants.py`.
+* `CommentForm` and `ContactForm` previously lived inside `models.py`; they
+  are real forms and now live in `core/forms.py`.
+
+
+--------------------------------------------------------------------------------
+4. SERVICES LAYER (`core/services/`)
+--------------------------------------------------------------------------------
+
+Pure business logic. None of these modules import Django views or templates.
+This is where you write things you might want to call from a view, a CLI
+command, a Celery task, or a unit test.
+
+    permissions.py        Role checks against `auth.Group`:
+                          is_customer(user), is_service_provider(user),
+                          has_completed_profile(user)
+
+    subscriptions.py      Seller-plan lifecycle: validity windows, entry
+                          quotas, expiry side-effects:
+                          has_active_subscription, has_remaining_entries,
+                          remaining_subscription_days, booster_days,
+                          order_within_subscription
+
+    pricing.py            Cart math + identifiers:
+                          create_ref_code(length), cart_totals(items),
+                          effective_price(item)
+
+    payments.py           Module-scope clients for the two gateways
+                          (razorpay_client, instamojo_client). InstaMojo is
+                          imported best-effort because the upstream wrapper
+                          has no Python 3.10+ wheels.
+
+Conventions
+-----------
+* Services accept and return primitives or model instances — never `HttpRequest`.
+* Anything that touches the database belongs here OR on a model method —
+  *not* in a view.
+* If a service needs settings, import `django.conf.settings` directly; don't
+  pass settings around.
+
+
+--------------------------------------------------------------------------------
+5. VIEWS LAYER (`core/views/`)
+--------------------------------------------------------------------------------
+
+Views are thin: parse input from `request`, call into a service, render a
+template (or redirect). They are grouped by the audience they serve.
+
+    auth.py         login (customer + service-provider), logout, registration
+                    flows. Centralizes the email/phone/password validation
+                    regexes.
+
+    storefront.py   Everything a buyer touches:
+                      • welcome / static pages / testimonials
+                      • catalog browsing (product_page, productpage_page,
+                        product_page_json)
+                      • cart (cart_page, addItemToCart, removeFromCart,
+                        removeSingleItem)
+                      • checkout (checkout_page, payment_status)
+                      • my orders (myorders_page)
+                      • product reviews (addcomment)
+
+    seller.py       Everything a seller touches:
+                      • profile + bank details
+                      • product CRUD
+                      • orders received + accept / decline / deliver / message
+                      • subscription purchase (Razorpay + InstaMojo paths)
+
+    analytics.py    Admin-only dashboards:
+                      • payment_graph_view (per-day/week/month payments)
+                      • subscription_graph_view (same, for plan revenue)
+                    Series helpers (_daily_series / _weekly_series /
+                    _monthly_series) are private, parameterised by model.
+
+    __init__.py     Re-exports every view function under its legacy name so
+                    `core/urls.py` and any external import keeps working.
+
+URL names live in `core/urls.py` under `app_name = "shop"`. Reverse lookups
+use the `shop:` prefix throughout templates and views. **Do not change this
+prefix** — templates depend on it.
+
+
+--------------------------------------------------------------------------------
+6. CONFIGURATION (`demo/`)
+--------------------------------------------------------------------------------
+
+`settings.py` is the single source of truth for development. It reads every
+secret from environment variables via `python-decouple`, with safe defaults
+when `DEBUG=True`. In production (`ENVIRONMENT=production`) the secret key
+becomes mandatory, all cookies become Secure, HSTS is enabled, and
+SSL-redirect is on.
+
+`azure.py` extends `settings.py` for Azure App Service deployments
+(PostgreSQL + Azure blob storage). Activate with
+`DJANGO_SETTINGS_MODULE=demo.azure`.
+
+The `.env.example` file lists every variable the app reads. Copy it to `.env`,
+fill in real values, and python-decouple will pick them up.
+
+Settings categories
+-------------------
+    Core            ENVIRONMENT, DEBUG, SECRET_KEY, ALLOWED_HOSTS
+    Email           EMAIL_BACKEND, EMAIL_HOST, EMAIL_HOST_USER, …
+    Payments        STRIPE_*, RAZORPAY_*, INSTAMOJO_*
+    Social auth     GOOGLE_OAUTH_CLIENT_ID, …
+
+
+--------------------------------------------------------------------------------
+7. REQUEST FLOW EXAMPLES
+--------------------------------------------------------------------------------
+
+Buyer adds an item to their cart:
+    URL  /add-to-cart/<id>/<qt>/         (urls.py)
+        → views.storefront.addItemToCart  (parse id, qt; load Item)
+            → services.pricing.effective_price(item)
+            → models.OrderItem.objects.filter(...)  (find existing cart row)
+            → models.OrderItem.getTaxAmount()       (line tax)
+            → save                                  (persist)
+        → redirect("shop:cart")
+
+Seller buys a subscription via Razorpay:
+    URL  /buySubcription/<id>/                       (urls.py)
+        → views.seller.buySubcription                (validate inputs)
+            → services.payments.razorpay_client.order.create(...)
+            → render subscription.html with order_id + price
+    Browser POSTs to /subcription_payment_status/<id>/
+        → views.seller.subcription_payment_status
+            → razorpay_client.order.fetch(...)
+            → models.SubscriptionPayment.objects.create(...)
+            → views.seller._activate_subscription(profile, plan)
+                → services.subscriptions.booster_days(profile)
+            → redirect("shop:profile")
+
+
+--------------------------------------------------------------------------------
+8. CONVENTIONS & GUARDRAILS
+--------------------------------------------------------------------------------
+
+Coding
+------
+* Imports: stdlib → third-party → Django → local, each block alphabetised.
+* `from __future__ import annotations` at the top of new modules so type
+  hints are string-evaluated (avoids cycles).
+* Use raw strings (`r"…"`) for every regex literal — Python 3.12+ raises
+  `SyntaxWarning` on `\d` and friends inside non-raw strings.
+* Avoid bare `except:` — catch the specific exception or `Exception`.
+* `print(...)` calls are forbidden; use `logging.getLogger(__name__)`.
+
+Models
+------
+* New code uses snake_case for fields. Legacy mixed-case fields (`brandName`,
+  `categoryId`, `productId`, `totalPrice`, `getTaxAmount`) stay because
+  templates and migrations depend on them.
+* No new logic in `Item`/`OrderItem` instance methods unless it is a trivial
+  property of *that* row. Cross-row computations live in services.
+
+Views
+-----
+* A view should be small enough to read in one screen. If it is not, split
+  it: extract an internal helper, push logic into a service, or break the
+  flow into smaller URLs.
+* Always redirect after a successful POST. Always render a template on GET.
+
+URLs
+----
+* `app_name = "shop"` is permanent. Every reverse lookup uses `shop:<name>`.
+* Add a new URL inside the matching group in `core/urls.py`
+  (`storefront_patterns`, `auth_patterns`, `seller_patterns`).
+
+Migrations
+----------
+* The 45 existing migrations are sealed history. Do not edit or delete them;
+  add new ones with `python manage.py makemigrations`.
+* Renaming a model or field requires a `RenameField` / `RenameModel`
+  migration generated by `makemigrations`. Never rename in the model file
+  alone.
+
+
+--------------------------------------------------------------------------------
+9. RUNNING / DEVELOPING
+--------------------------------------------------------------------------------
+
+    # one-time
+    python3 -m venv virtual-Env
+    source virtual-Env/bin/activate
+    pip install -r requirements.txt
+    cp .env.example .env       # then edit secrets
+
+    # day-to-day
+    python manage.py migrate
+    python manage.py runserver
+    python manage.py check     # health-check after a change
+
+
+--------------------------------------------------------------------------------
+10. WHERE TO PUT NEW CODE
+--------------------------------------------------------------------------------
+
+    "I'm adding a new product field…"           → core/models/catalog.py
+                                                   + makemigrations
+    "I need a way to compute X across orders…"  → core/services/pricing.py
+    "I need a new role check…"                  → core/services/permissions.py
+    "I'm adding a new payment gateway…"         → core/services/payments.py
+                                                   + a view in storefront/seller
+    "I'm adding a new buyer page…"              → core/views/storefront.py
+    "I'm adding a new seller page…"             → core/views/seller.py
+    "I need a new admin chart…"                 → core/views/analytics.py
+    "I have a new choice tuple…"                → core/constants.py
+    "I have a new env variable…"                → demo/settings.py
+                                                   + .env.example
+================================================================================

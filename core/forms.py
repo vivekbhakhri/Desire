@@ -1,14 +1,42 @@
+"""Application forms.
+
+Note: `CommentForm` and `ContactForm` previously lived inside `core/models.py`
+purely for legacy reasons. They are model-bound forms and belong here.
+"""
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from tinymce.widgets import TinyMCE
 
-PAYMENT_CHOICES = (
-    ("InstaMojo", "Online(Debit/Credit Cards"),
-    ("COD", "Cash On Delivery"),
-)
+from core.constants import PAYMENT_CHOICES
 
+
+# ---------------------------------------------------------------------------
+# File upload widgets
+# ---------------------------------------------------------------------------
+# Django 5 forbids `ClearableFileInput(multiple=True)`; the supported pattern
+# is a custom widget + field pair.
+
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleFileField(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleFileInput())
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single = super().clean
+        if isinstance(data, (list, tuple)):
+            return [single(d, initial) for d in data]
+        return single(data, initial)
+
+
+# ---------------------------------------------------------------------------
+# Auth
+# ---------------------------------------------------------------------------
 
 class CreateUserForm(UserCreationForm):
     contact_number = forms.CharField(max_length=255)
@@ -43,6 +71,10 @@ class ServiceLogInForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 
+# ---------------------------------------------------------------------------
+# Catalog / checkout
+# ---------------------------------------------------------------------------
+
 class CreateProductForm(forms.Form):
     Product_Description = forms.CharField(
         widget=TinyMCE(attrs={"class": "col-lg-8 col-sm-12 form"})
@@ -50,22 +82,6 @@ class CreateProductForm(forms.Form):
     Shipping_Details = forms.CharField(
         widget=TinyMCE(attrs={"class": "col-lg-8 col-sm-12 form"})
     )
-
-
-class MultipleFileInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-
-class MultipleFileField(forms.FileField):
-    def __init__(self, *args, **kwargs):
-        kwargs.setdefault("widget", MultipleFileInput())
-        super().__init__(*args, **kwargs)
-
-    def clean(self, data, initial=None):
-        single = super().clean
-        if isinstance(data, (list, tuple)):
-            return [single(d, initial) for d in data]
-        return single(data, initial)
 
 
 class FileUploadForm(forms.Form):
@@ -78,3 +94,22 @@ class RadioCheckoutForm(forms.Form):
             choices=PAYMENT_CHOICES, attrs={"class": "my-radio"}
         )
     )
+
+
+# ---------------------------------------------------------------------------
+# Model-bound forms
+# ---------------------------------------------------------------------------
+
+from core.models.content import Comment, Contact  # noqa: E402  (after widget defs)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["rate"]
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ["fname", "lname", "mobileno", "emailId", "subject"]
