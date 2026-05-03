@@ -1,19 +1,45 @@
 # Desire
-Desire is a e-commerce website built to let local sellers sell products online and their customers to buy the products by sitting at home.
 
-for more information refer to wiki
+E-commerce site that lets local sellers list products and customers buy from home.
 
+## Requirements
 
-# Steps to setup
+- Python 3.11+ (developed against 3.14)
+- Django 5.x (see `requirements.txt`)
 
-1. install python and Django if not already installed.
-2. Download the files and place them in a folder
-3. create a python virtual environment by typing command "python3 -m venv virtual-Env"
-4. navigate to folder where you pasted the files and have the environment
-5. Start the virtual environment
-6. install all the requirements through requirement.txt file (command: pip3 install -r requirements.txt )
-7. Now navigate to file manage.py file and run the django server by typing the following command:
-   "python manage.py runserver"
-   
-Bravo you have setup the desire website on your server
-## NOTE: Noone should use the code without my permission
+## Local setup
+
+```bash
+# 1. Create and activate a virtual environment
+python3 -m venv virtual-Env
+source virtual-Env/bin/activate           # macOS / Linux
+# .\virtual-Env\Scripts\activate          # Windows
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Configure environment variables
+cp .env.example .env
+# edit .env and set SECRET_KEY plus any payment / email credentials you need
+
+# 4. Apply migrations and start the dev server
+python manage.py migrate
+python manage.py runserver
+```
+
+The site will be available at <http://127.0.0.1:8000/>.
+
+## Configuration
+
+All secrets are loaded from environment variables via `python-decouple`. See
+[`.env.example`](./.env.example) for the full list. Production deployments
+should set `ENVIRONMENT=production`, `DEBUG=False`, and a real `SECRET_KEY`.
+
+## Notes
+
+- `instamojo_wrapper` is unmaintained and has no Python 3.10+ wheels. The
+  InstaMojo integration is loaded lazily and the rest of the app runs without
+  it. Razorpay is the recommended payment gateway.
+- The `demo/azure.py` settings module is for Azure App Service deployments
+  (Postgres + Azure blob storage). Activate with
+  `DJANGO_SETTINGS_MODULE=demo.azure`.

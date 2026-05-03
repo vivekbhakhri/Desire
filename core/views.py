@@ -1,34 +1,63 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, UserLogInForm, ServiceLogInForm, CreateProductForm, RadioCheckoutForm
-from .models import Profile, SubscriptionPayment, Category, Item, Attachment, OrderItem, Attachment, BillingAddress, Payment, Comment, CommentForm, Testimonial, Subcription, Seo, HomeImage
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, JsonResponse
-from django.contrib import messages
-from django.utils import timezone
-from datetime import datetime, timedelta
-from django.core.paginator import Paginator
-from django.contrib.admin.views.decorators import staff_member_required
-from django.db.models import Sum, Count
-from django.db.models.functions import ExtractWeek, ExtractMonth, TruncDay
-import random
-import string
-import re
 import calendar
-
-from instamojo_wrapper import Instamojo
-API_KEY = "test_40664180402e64719e4ad001486"
-AUTH_TOKEN = "test_4362430ec6fac7573e1048788af"
-api = Instamojo(api_key=API_KEY,auth_token=AUTH_TOKEN,endpoint='https://test.instamojo.com/api/1.1/')
-
+import random
+import re
+import string
+from datetime import datetime, timedelta
 
 import razorpay
-client = razorpay.Client(auth=("rzp_test_gZUdaE6doY9IkN", "x0GVGy02QtV4aqxzAfRuYy2P"))
-#client = razorpay.Client(auth=("rzp_test_0EmBEJ2rejSH8g", "yE0M3thBYEZuyRjvm959d1KG"))
-# client = razorpay.Client(auth=("rzp_test_bjxg6t7DTXax3c", "kqUVmjRxlXpVcrhKG9dxEnMr"))
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.db.models import Sum
+from django.db.models.functions import ExtractMonth, ExtractWeek, TruncDay
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect, render
+from django.utils import timezone
+
+from .forms import (
+    CreateProductForm,
+    CreateUserForm,
+    RadioCheckoutForm,
+    ServiceLogInForm,
+    UserLogInForm,
+)
+from .models import (
+    Attachment,
+    BillingAddress,
+    Category,
+    Comment,
+    CommentForm,
+    HomeImage,
+    Item,
+    OrderItem,
+    Payment,
+    Profile,
+    Seo,
+    Subcription,
+    SubscriptionPayment,
+    Testimonial,
+)
+
+# instamojo_wrapper is unmaintained (no Python 3.10+ wheels). Optional import
+# so the rest of the app still loads if the package is missing.
+try:
+    from instamojo_wrapper import Instamojo
+
+    api = Instamojo(
+        api_key=settings.INSTAMOJO_API_KEY,
+        auth_token=settings.INSTAMOJO_AUTH_TOKEN,
+        endpoint=settings.INSTAMOJO_ENDPOINT,
+    )
+except Exception:  # pragma: no cover - SDK absent in modern environments
+    api = None
+
+client = razorpay.Client(
+    auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
+)
 
 '''
     subsdate = 11.11.2020
@@ -845,8 +874,8 @@ def registration_page(request, backend='django.contrib.auth.backends.ModelBacken
             password2 = request.POST['password2']
             phoneNo = request.POST['contact_number']
             email = request.POST['username']
-            rex = '^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$'
-            regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+            rex = r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$'
+            regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
             if User.objects.filter(email=email).exists():
                 messages.error(request, "Email ID already taken.    Do Login If You Are An Existing User ")
                 return  redirect('shop:registration')
@@ -902,7 +931,7 @@ def registration_sp_page(request):
             password2 = request.POST['password2']
             phoneNo = request.POST['contact_number']
             email = request.POST['username']
-            regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+            regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
             if User.objects.filter(email=email).exists():
                 messages.error(request, "Email ID already taken.    Do Login If You Are An Existing User ")
                 return  redirect('shop:registration_sp')

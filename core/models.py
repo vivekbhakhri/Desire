@@ -1,14 +1,12 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Sum,Avg,Count
-from django.shortcuts import reverse
-from django_countries.fields import CountryField
+from django.db.models import Avg, Count
 from django.forms import ModelForm
+from django.urls import reverse
 from tinymce.models import HTMLField
+
 from .validators import validate_file_size
-from django.contrib.auth.models import User
-from django.contrib.auth.models import User
-# Create your models here.
 
 
 LABEL_CHOICES = (
