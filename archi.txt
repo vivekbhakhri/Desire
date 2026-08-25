@@ -24,8 +24,11 @@ that way, and the conventions every contributor should follow.
     ├── archi.txt                ← this document
     │
     ├── demo/                    ← Django project (settings + URL root + WSGI)
-    │   ├── settings.py          ← env-driven base settings (dev defaults)
-    │   ├── azure.py             ← production overrides for Azure App Service
+    │   ├── settings/            ← settings package, one file per environment
+    │   │   ├── base.py          ← everything common
+    │   │   ├── development.py   ← DEBUG=True, console email
+    │   │   ├── production.py    ← security headers, mandatory SECRET_KEY
+    │   │   └── azure.py         ← Postgres + Azure blob storage
     │   ├── urls.py              ← root URLConf
     │   └── wsgi.py
     │
@@ -39,6 +42,7 @@ that way, and the conventions every contributor should follow.
     │   ├── models/              ← persistence layer (split by bounded context)
     │   ├── services/            ← business logic (no HTTP, no templates)
     │   ├── views/               ← thin controllers, grouped by audience
+    │   ├── tests/               ← unit tests for the services layer
     │   ├── templatetags/
     │   ├── management/commands/ ← makesuper, rename
     │   └── migrations/          ← 45 sealed migrations — DO NOT REWRITE
@@ -188,28 +192,39 @@ prefix** — templates depend on it.
 
 
 --------------------------------------------------------------------------------
-6. CONFIGURATION (`demo/`)
+6. CONFIGURATION (`demo/settings/`)
 --------------------------------------------------------------------------------
 
-`settings.py` is the single source of truth for development. It reads every
-secret from environment variables via `python-decouple`, with safe defaults
-when `DEBUG=True`. In production (`ENVIRONMENT=production`) the secret key
-becomes mandatory, all cookies become Secure, HSTS is enabled, and
-SSL-redirect is on.
+The settings layer is split by environment. Each module imports from the one
+above it and overrides only what differs:
 
-`azure.py` extends `settings.py` for Azure App Service deployments
-(PostgreSQL + Azure blob storage). Activate with
-`DJANGO_SETTINGS_MODULE=demo.azure`.
+    base.py
+        Single source of truth. Reads every secret from environment variables
+        via `python-decouple`. Defines INSTALLED_APPS, MIDDLEWARE, DATABASES,
+        EMAIL, payment + OAuth credentials, LOGGING.
+
+    development.py  (← `DJANGO_SETTINGS_MODULE=demo.settings.development`)
+        Default for `manage.py`. DEBUG=True, console email backend, DEBUG-level
+        application logs.
+
+    production.py   (← `DJANGO_SETTINGS_MODULE=demo.settings.production`)
+        Default for `wsgi.py`. DEBUG=False; raises at import time if
+        SECRET_KEY is unset; enables HSTS, secure cookies, SSL redirect.
+
+    azure.py        (← `DJANGO_SETTINGS_MODULE=demo.settings.azure`)
+        Extends production with PostgreSQL + Azure blob storage backends.
 
 The `.env.example` file lists every variable the app reads. Copy it to `.env`,
 fill in real values, and python-decouple will pick them up.
 
 Settings categories
 -------------------
-    Core            ENVIRONMENT, DEBUG, SECRET_KEY, ALLOWED_HOSTS
+    Core            SECRET_KEY, ALLOWED_HOSTS, DEBUG (set by env-specific module)
     Email           EMAIL_BACKEND, EMAIL_HOST, EMAIL_HOST_USER, …
     Payments        STRIPE_*, RAZORPAY_*, INSTAMOJO_*
     Social auth     GOOGLE_OAUTH_CLIENT_ID, …
+    Logging         LOGGING dict — `core` logger writes to console at INFO
+                    (DEBUG in development).
 
 
 --------------------------------------------------------------------------------
@@ -252,6 +267,17 @@ Coding
   `SyntaxWarning` on `\d` and friends inside non-raw strings.
 * Avoid bare `except:` — catch the specific exception or `Exception`.
 * `print(...)` calls are forbidden; use `logging.getLogger(__name__)`.
+  External calls that may swallow money/state (payment-gateway round-trips)
+  must `logger.exception(...)` on failure — never silent `pass`.
+
+Tests
+-----
+* Tests live in `core/tests/`, one file per service module (`test_pricing.py`,
+  `test_subscriptions.py`, `test_permissions.py`, …).
+* Run them with `python manage.py test core.tests`. The development settings
+  swap to an in-memory SQLite database automatically.
+* New service code MUST come with at least one happy-path test plus one edge
+  case (None inputs, empty querysets, expired plans, etc.).
 
 Models
 ------
@@ -296,7 +322,8 @@ Migrations
     # day-to-day
     python manage.py migrate
     python manage.py runserver
-    python manage.py check     # health-check after a change
+    python manage.py check         # health-check after a change
+    python manage.py test core.tests  # run the unit-test suite
 
 
 --------------------------------------------------------------------------------
@@ -313,6 +340,7 @@ Migrations
     "I'm adding a new seller page…"             → core/views/seller.py
     "I need a new admin chart…"                 → core/views/analytics.py
     "I have a new choice tuple…"                → core/constants.py
-    "I have a new env variable…"                → demo/settings.py
+    "I have a new env variable…"                → demo/settings/base.py
                                                    + .env.example
+    "I have a new test for a service…"          → core/tests/test_<service>.py
 ================================================================================

@@ -31,15 +31,30 @@ The site will be available at <http://127.0.0.1:8000/>.
 
 ## Configuration
 
+Settings are split per environment under [`config/settings/`](./config/settings/):
+
+| Environment | `DJANGO_SETTINGS_MODULE` | Notes |
+|-------------|--------------------------|-------|
+| Local dev   | `config.settings.development` (default for `manage.py`) | DEBUG on, console email |
+| Production  | `config.settings.production` (default for `wsgi.py`)    | Raises if `SECRET_KEY` is unset; HSTS + SSL redirect |
+| Azure       | `config.settings.azure`                                 | Postgres + Azure blob storage |
+
 All secrets are loaded from environment variables via `python-decouple`. See
-[`.env.example`](./.env.example) for the full list. Production deployments
-should set `ENVIRONMENT=production`, `DEBUG=False`, and a real `SECRET_KEY`.
+[`.env.example`](./.env.example) for the full list.
+
+## Tests
+
+```bash
+python manage.py test shop.tests
+```
+
+The suite covers the `shop/services/` layer (pricing, subscriptions,
+permissions). New service code should ship with tests in `shop/tests/`.
 
 ## Notes
 
 - `instamojo_wrapper` is unmaintained and has no Python 3.10+ wheels. The
   InstaMojo integration is loaded lazily and the rest of the app runs without
   it. Razorpay is the recommended payment gateway.
-- The `demo/azure.py` settings module is for Azure App Service deployments
-  (Postgres + Azure blob storage). Activate with
-  `DJANGO_SETTINGS_MODULE=demo.azure`.
+- See [`archi.txt`](./archi.txt) for a complete architectural tour of the
+  codebase.
